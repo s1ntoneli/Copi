@@ -15,6 +15,8 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    
+    @State var changeCount = 0
 
     var body: some View {
         NavigationView {
@@ -35,7 +37,29 @@ struct ContentView: View {
                     }
                 }
             }
-            Text("Select an item")
+            VStack {
+                Button {
+                    call()
+                } label: {
+                    Text("Get")
+                }
+                Text("Select an item \(changeCount)")
+                    .textSelection(.enabled)
+            }
+        }
+        .task {
+            Clipboard.shared.onNewCopy { items in
+                changeCount = NSPasteboard.general.changeCount
+            }
+        }
+    }
+    
+    func call() {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1) {
+//            callAppleScript3()
+//            runWorkflow()
+            let text = getSelectedText()
+            print("get", text)
         }
     }
 

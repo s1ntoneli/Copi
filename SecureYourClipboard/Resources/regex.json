@@ -1,0 +1,19 @@
+[{
+    "name": "email",
+    "regex": "\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\\b",
+    "systemImage": "envelope",
+    "description": "Email address",
+    "author": "sintone",
+    "example": [
+        { "input": "john@example.com", "output": "<REPLACED>" }
+    ]
+}, {
+    "name": "phone",
+    "regex": "\\b\\+?\\d{1,3}[-\\s]?\\d{3,14}\\b",
+    "systemImage": "phone",
+    "description": "Email address",
+    "author": "sintone",
+    "example": [
+        { "input": "13004112345", "output": "<REPLACED>" }
+    ]
+}]

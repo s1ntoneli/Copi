@@ -1,0 +1,1 @@
+get contents of selection

@@ -16,6 +16,27 @@
 		69903C3F2BB131ED00661BA2 /* SecureYourClipboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C3E2BB131ED00661BA2 /* SecureYourClipboardTests.swift */; };
 		69903C492BB131ED00661BA2 /* SecureYourClipboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C482BB131ED00661BA2 /* SecureYourClipboardUITests.swift */; };
 		69903C4B2BB131ED00661BA2 /* SecureYourClipboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C4A2BB131ED00661BA2 /* SecureYourClipboardUITestsLaunchTests.swift */; };
+		69903C582BB131FF00661BA2 /* Clipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C572BB131FF00661BA2 /* Clipboard.swift */; };
+		69903C5B2BB560BB00661BA2 /* TextFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C5A2BB560BB00661BA2 /* TextFilter.swift */; };
+		69903C5E2BB562BD00661BA2 /* SwitchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C5D2BB562BD00661BA2 /* SwitchItem.swift */; };
+		69903C602BB56CD000661BA2 /* Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C5F2BB56CD000661BA2 /* Security.swift */; };
+		69903C622BB5728200661BA2 /* RegexFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C612BB5728200661BA2 /* RegexFilterTests.swift */; };
+		69903C632BB572D300661BA2 /* TextFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69903C5A2BB560BB00661BA2 /* TextFilter.swift */; };
+		69A2CA212BBA4E8B008994F5 /* regex.json in Resources */ = {isa = PBXBuildFile; fileRef = 69A2CA202BBA4E8B008994F5 /* regex.json */; };
+		69A2CA242BBA5578008994F5 /* SensitiveDataRegexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA232BBA5578008994F5 /* SensitiveDataRegexModel.swift */; };
+		69A2CA292BBA57B0008994F5 /* SwitchItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA282BBA57B0008994F5 /* SwitchItemProvider.swift */; };
+		69A2CA2B2BBA5B1F008994F5 /* SwitchListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA2A2BBA5B1F008994F5 /* SwitchListVM.swift */; };
+		69A2CA2D2BBA5CD5008994F5 /* SwitchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA2C2BBA5CD5008994F5 /* SwitchListView.swift */; };
+		69A2CA2F2BBA64C5008994F5 /* RegexResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA2E2BBA64C5008994F5 /* RegexResourcesTests.swift */; };
+		69A2CA302BBA64F3008994F5 /* SwitchItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA282BBA57B0008994F5 /* SwitchItemProvider.swift */; };
+		69A2CA312BBA64F9008994F5 /* regex.json in Resources */ = {isa = PBXBuildFile; fileRef = 69A2CA202BBA4E8B008994F5 /* regex.json */; };
+		69A2CA322BBA6522008994F5 /* SensitiveDataRegexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA232BBA5578008994F5 /* SensitiveDataRegexModel.swift */; };
+		69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA332BBA85EE008994F5 /* AppleScriptUtilities.swift */; };
+		69A2CA372BBAA08F008994F5 /* getselection.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA362BBAA08F008994F5 /* getselection.applescript */; };
+		69A2CA3F2BBAB2B3008994F5 /* AppleScriptTest.workflow in Resources */ = {isa = PBXBuildFile; fileRef = 69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */; };
+		69A2CA412BBBE817008994F5 /* MouseEventCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */; };
+		69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA422BBC0424008994F5 /* SystemUtilities.swift */; };
+		69A2CA462BBC4B94008994F5 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +70,24 @@
 		69903C442BB131ED00661BA2 /* SecureYourClipboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureYourClipboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69903C482BB131ED00661BA2 /* SecureYourClipboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureYourClipboardUITests.swift; sourceTree = "<group>"; };
 		69903C4A2BB131ED00661BA2 /* SecureYourClipboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureYourClipboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		69903C572BB131FF00661BA2 /* Clipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clipboard.swift; sourceTree = "<group>"; };
+		69903C5A2BB560BB00661BA2 /* TextFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFilter.swift; sourceTree = "<group>"; };
+		69903C5D2BB562BD00661BA2 /* SwitchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchItem.swift; sourceTree = "<group>"; };
+		69903C5F2BB56CD000661BA2 /* Security.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security.swift; sourceTree = "<group>"; };
+		69903C612BB5728200661BA2 /* RegexFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFilterTests.swift; sourceTree = "<group>"; };
+		69A2CA202BBA4E8B008994F5 /* regex.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = regex.json; sourceTree = "<group>"; };
+		69A2CA232BBA5578008994F5 /* SensitiveDataRegexModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensitiveDataRegexModel.swift; sourceTree = "<group>"; };
+		69A2CA282BBA57B0008994F5 /* SwitchItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchItemProvider.swift; sourceTree = "<group>"; };
+		69A2CA2A2BBA5B1F008994F5 /* SwitchListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchListVM.swift; sourceTree = "<group>"; };
+		69A2CA2C2BBA5CD5008994F5 /* SwitchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchListView.swift; sourceTree = "<group>"; };
+		69A2CA2E2BBA64C5008994F5 /* RegexResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexResourcesTests.swift; sourceTree = "<group>"; };
+		69A2CA332BBA85EE008994F5 /* AppleScriptUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScriptUtilities.swift; sourceTree = "<group>"; };
+		69A2CA352BBA88F7008994F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		69A2CA362BBAA08F008994F5 /* getselection.applescript */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.applescript; path = getselection.applescript; sourceTree = "<group>"; };
+		69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleScriptTest.workflow; path = ../../../../Library/Services/AppleScriptTest.workflow; sourceTree = "<group>"; };
+		69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventCatcher.swift; sourceTree = "<group>"; };
+		69A2CA422BBC0424008994F5 /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
+		69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +138,12 @@
 		69903C262BB131EB00661BA2 /* SecureYourClipboard */ = {
 			isa = PBXGroup;
 			children = (
+				69A2CA352BBA88F7008994F5 /* Info.plist */,
+				69A2CA262BBA5738008994F5 /* ViewModel */,
+				69A2CA252BBA5733008994F5 /* View */,
+				69A2CA1E2BBA4C40008994F5 /* Define */,
+				69A2CA1D2BBA4C38008994F5 /* Resources */,
+				69903C592BB560AD00661BA2 /* Utilities */,
 				69903C272BB131EB00661BA2 /* SecureYourClipboardApp.swift */,
 				69903C292BB131EB00661BA2 /* ContentView.swift */,
 				69903C2B2BB131ED00661BA2 /* Assets.xcassets */,
@@ -106,6 +151,7 @@
 				69903C352BB131ED00661BA2 /* SecureYourClipboard.entitlements */,
 				69903C322BB131ED00661BA2 /* SecureYourClipboard.xcdatamodeld */,
 				69903C2D2BB131ED00661BA2 /* Preview Content */,
+				69903C572BB131FF00661BA2 /* Clipboard.swift */,
 			);
 			path = SecureYourClipboard;
 			sourceTree = "<group>";
@@ -122,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				69903C3E2BB131ED00661BA2 /* SecureYourClipboardTests.swift */,
+				69903C612BB5728200661BA2 /* RegexFilterTests.swift */,
+				69A2CA2E2BBA64C5008994F5 /* RegexResourcesTests.swift */,
 			);
 			path = SecureYourClipboardTests;
 			sourceTree = "<group>";
@@ -133,6 +181,71 @@
 				69903C4A2BB131ED00661BA2 /* SecureYourClipboardUITestsLaunchTests.swift */,
 			);
 			path = SecureYourClipboardUITests;
+			sourceTree = "<group>";
+		};
+		69903C592BB560AD00661BA2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				69903C5A2BB560BB00661BA2 /* TextFilter.swift */,
+				69903C5F2BB56CD000661BA2 /* Security.swift */,
+				69A2CA332BBA85EE008994F5 /* AppleScriptUtilities.swift */,
+				69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */,
+				69A2CA422BBC0424008994F5 /* SystemUtilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		69A2CA1D2BBA4C38008994F5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */,
+				69A2CA202BBA4E8B008994F5 /* regex.json */,
+				69A2CA362BBAA08F008994F5 /* getselection.applescript */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		69A2CA1E2BBA4C40008994F5 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		69A2CA252BBA5733008994F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				69A2CA442BBC4B71008994F5 /* Popup */,
+				69A2CA272BBA5751008994F5 /* SwitchList */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		69A2CA262BBA5738008994F5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		69A2CA272BBA5751008994F5 /* SwitchList */ = {
+			isa = PBXGroup;
+			children = (
+				69903C5D2BB562BD00661BA2 /* SwitchItem.swift */,
+				69A2CA232BBA5578008994F5 /* SensitiveDataRegexModel.swift */,
+				69A2CA282BBA57B0008994F5 /* SwitchItemProvider.swift */,
+				69A2CA2A2BBA5B1F008994F5 /* SwitchListVM.swift */,
+				69A2CA2C2BBA5CD5008994F5 /* SwitchListView.swift */,
+			);
+			path = SwitchList;
+			sourceTree = "<group>";
+		};
+		69A2CA442BBC4B71008994F5 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,7 +352,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A2CA3F2BBAB2B3008994F5 /* AppleScriptTest.workflow in Resources */,
 				69903C2F2BB131ED00661BA2 /* Preview Assets.xcassets in Resources */,
+				69A2CA212BBA4E8B008994F5 /* regex.json in Resources */,
 				69903C2C2BB131ED00661BA2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A2CA312BBA64F9008994F5 /* regex.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +381,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A2CA412BBBE817008994F5 /* MouseEventCatcher.swift in Sources */,
+				69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */,
+				69A2CA2D2BBA5CD5008994F5 /* SwitchListView.swift in Sources */,
 				69903C342BB131ED00661BA2 /* SecureYourClipboard.xcdatamodeld in Sources */,
+				69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */,
+				69903C602BB56CD000661BA2 /* Security.swift in Sources */,
+				69903C5B2BB560BB00661BA2 /* TextFilter.swift in Sources */,
 				69903C312BB131ED00661BA2 /* Persistence.swift in Sources */,
+				69903C5E2BB562BD00661BA2 /* SwitchItem.swift in Sources */,
+				69A2CA462BBC4B94008994F5 /* PopupWindowController.swift in Sources */,
+				69A2CA292BBA57B0008994F5 /* SwitchItemProvider.swift in Sources */,
+				69903C582BB131FF00661BA2 /* Clipboard.swift in Sources */,
+				69A2CA242BBA5578008994F5 /* SensitiveDataRegexModel.swift in Sources */,
+				69A2CA2B2BBA5B1F008994F5 /* SwitchListVM.swift in Sources */,
+				69A2CA372BBAA08F008994F5 /* getselection.applescript in Sources */,
 				69903C2A2BB131EB00661BA2 /* ContentView.swift in Sources */,
 				69903C282BB131EB00661BA2 /* SecureYourClipboardApp.swift in Sources */,
 			);
@@ -276,7 +405,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A2CA322BBA6522008994F5 /* SensitiveDataRegexModel.swift in Sources */,
+				69A2CA302BBA64F3008994F5 /* SwitchItemProvider.swift in Sources */,
 				69903C3F2BB131ED00661BA2 /* SecureYourClipboardTests.swift in Sources */,
+				69A2CA2F2BBA64C5008994F5 /* RegexResourcesTests.swift in Sources */,
+				69903C632BB572D300661BA2 /* TextFilter.swift in Sources */,
+				69903C622BB5728200661BA2 /* RegexFilterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to the clipboard to perform certain actions.";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -414,6 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to the clipboard to perform certain actions.";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -437,6 +573,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SecureYourClipboard/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "I need it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -464,6 +602,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SecureYourClipboard/Info.plist;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "I need it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
