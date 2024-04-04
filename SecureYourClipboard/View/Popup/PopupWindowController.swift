@@ -32,9 +32,11 @@ class PopupWindowController: NSWindowController, NSWindowDelegate {
         window?.backgroundColor = .clear
     }
     
-    func showWindowAt(_ location: NSPoint, _ text: String) {
+    func showWindowAt(_ mouseLocation: NSPoint, _ text: String) {
         guard let window = window else { return }
         window.makeKeyAndOrderFront(nil)
+
+        let location = NSPoint(x: mouseLocation.x - window.frame.width / 2, y: mouseLocation.y + window.frame.height / 2)
         window.setFrameOrigin(location)
         viewModel.selectedText = text
         showWindow(nil)
@@ -61,36 +63,54 @@ class PopupViewModel: ObservableObject {
 struct PopupView: View {
     @EnvironmentObject var vm: PopupViewModel
     @State var hovered = false
+    @State var selections: Set<Int> = []
     
     var body: some View {
-        HStack {
-            Text("Safe Copy")
-                .background(hovered ? .blue : .clear)
-                .foregroundColor(hovered ? .white : .primary)
+        HStack(spacing: 0) {
+            PopupItemView(title: "Copy", icon: "lock.shield")
+                .stag(0)
                 .onTapGesture {
                     NSPasteboard.general.safeCopyPlainTextValue = vm.selectedText
                     PopupWindowController.shared.closeWindow()
                 }
                 .onHover { hover in
-                    hovered = hover
+                    if hover {
+                        selections = [0]
+                    }
                 }
             if let text = NSPasteboard.general.safeCopyPlainTextValue {
-                Text("Safe Paste")
-                    .background(hovered ? .blue : .clear)
-                    .foregroundColor(hovered ? .white : .primary)
+                PopupItemView(title: "Paste", icon: "lock.shield")
                     .onTapGesture {
                         PopupWindowController.shared.closeWindow()
                         pastePrivacy(text)
                     }
+                    .stag(1)
                     .onHover { hover in
-                        hovered = hover
+                        if hover {
+                            selections = [1]
+                        }
                     }
             }
         }
-        .frame(width: 60, height: 32)
-        .background(.white.opacity(0.5))
-        .background(.regularMaterial)
-        .cornerRadius(8)
+        .fixedSize()
+        .background(.white.opacity(0.9))
+        .cornerRadius(4)
+        .selection(selections: selections)
+        .onHover { hover in
+            selections = []
+        }
     }
 }
 
+struct PopupItemView: View {
+    let title: String
+    let icon: String
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 4) {
+            Image(systemName: icon)
+            Text(title)
+        }
+        .padding(6)
+    }
+}

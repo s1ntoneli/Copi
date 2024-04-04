@@ -110,22 +110,27 @@ func getSelectedTextByAXUI() -> String? {
 func getSelectedTextByCopy() -> String? {
     var result: String? = nil
     let pasteboard = NSPasteboard.general
-    pasteboard.onPrivateMode {
+    pasteboard.onPrivateMode(endDelay: 0) {
         let changeCount = pasteboard.changeCount
         print("changeCount before copy", changeCount)
         callSystemCopy()
+        
         let semaphore = DispatchSemaphore(value: 0)
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.05) {
-            print("changeCount after copy", pasteboard.changeCount)
-            if changeCount != pasteboard.changeCount {
-                result = pasteboard.string(forType: .string)
-                print("get result", result)
+        DispatchQueue.global().async {
+            pollTask(every: 0.005, timeout: 0.1) {
+                if pasteboard.changeCount != changeCount {
+                    result = pasteboard.string(forType: .string)
+                    print("get result", result)
+                    semaphore.signal()
+                    return true
+                }
+                return false
+            } timeoutCallback: {
+                print("timeout")
+                semaphore.signal()
             }
-            semaphore.signal()
         }
-        print("wait")
         semaphore.wait()
-        print("wait finished")
     }
     print("return result", result)
     return result

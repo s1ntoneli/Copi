@@ -37,6 +37,7 @@
 		69A2CA412BBBE817008994F5 /* MouseEventCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */; };
 		69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA422BBC0424008994F5 /* SystemUtilities.swift */; };
 		69A2CA462BBC4B94008994F5 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */; };
+		69A2CA482BBD33F2008994F5 /* Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA472BBD33F2008994F5 /* Selection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventCatcher.swift; sourceTree = "<group>"; };
 		69A2CA422BBC0424008994F5 /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
 		69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
+		69A2CA472BBD33F2008994F5 /* Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			children = (
 				69A2CA442BBC4B71008994F5 /* Popup */,
 				69A2CA272BBA5751008994F5 /* SwitchList */,
+				69A2CA472BBD33F2008994F5 /* Selection.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				69903C342BB131ED00661BA2 /* SecureYourClipboard.xcdatamodeld in Sources */,
 				69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */,
 				69903C602BB56CD000661BA2 /* Security.swift in Sources */,
+				69A2CA482BBD33F2008994F5 /* Selection.swift in Sources */,
 				69903C5B2BB560BB00661BA2 /* TextFilter.swift in Sources */,
 				69903C312BB131ED00661BA2 /* Persistence.swift in Sources */,
 				69903C5E2BB562BD00661BA2 /* SwitchItem.swift in Sources */,

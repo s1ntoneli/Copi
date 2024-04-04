@@ -73,11 +73,6 @@ class MouseEventCatcher {
                 if current.timeIntervalSince(lastDownTime) < 0.38 && event.locationInWindow.distance(lastDownLocation) <= 5 {
                     downTimer?.invalidate()
                     downTimer = nil
-//                    downTimer = Timer.scheduledTimer(withTimeInterval: 0.38, repeats: false) { timer in
-//                        handled = true
-//                        self.notifyAllSelectHooks(event: event)
-//                        downTimer = nil
-//                    }
                     doubleClicked = true
                     return
                 }

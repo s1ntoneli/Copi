@@ -24,7 +24,6 @@ struct SecureYourClipboardApp: App {
                     MouseEventCatcher.shared.onSelectEventHooks { event in
                         let text = getSelectedText()
                         print("get", text)
-//                        if let text, text.starts(with: "syc") {
                         if let text {
                             PopupWindowController.shared.showWindowAt(event.locationInWindow, text)
                         } else {

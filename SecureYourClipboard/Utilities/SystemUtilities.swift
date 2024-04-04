@@ -70,10 +70,9 @@ extension NSPasteboard {
         get {
             return objc_getAssociatedObject(self, &kArchiveKey) as? [NSPasteboardItem]
         }
-    }
-
-    func setArchive(_ newArchive: [NSPasteboardItem]?) {
-        objc_setAssociatedObject(self, &kArchiveKey, newArchive, .OBJC_ASSOCIATION_RETAIN)
+        set {
+            objc_setAssociatedObject(self, &kArchiveKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
 
     func save() {
@@ -87,7 +86,7 @@ extension NSPasteboard {
             }
             archive.append(archivedItem)
         }
-        setArchive(archive)
+        self.archive = archive
     }
 
     func restore() {
@@ -95,11 +94,17 @@ extension NSPasteboard {
         writeObjects(archive ?? [])
     }
     
-    func onPrivateMode(_ task: @escaping () -> Void) {
+    func onPrivateMode(endDelay: TimeInterval = 0.05, _ task: @escaping () -> Void) {
         save()
         task()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+        if endDelay > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + endDelay) {
+                NSPasteboard.general.restore()
+                NSPasteboard.general.archive = nil
+            }
+        } else {
             NSPasteboard.general.restore()
+            NSPasteboard.general.archive = nil
         }
     }
 }
