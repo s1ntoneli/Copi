@@ -200,14 +200,14 @@ func pollTask(every interval: TimeInterval, timeout: TimeInterval = 2, task: @es
     
     RunLoop.current.run()
 }
-
+    
 func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBack) {
-    var eventMask = events.reduce(into: 0) { partialResult, eventType in
+    let eventMask = events.reduce(into: 0) { partialResult, eventType in
         partialResult = partialResult | 1 << eventType.rawValue
     }
 
     // 创建一个事件监听器，并指定位置为cghidEventTap
-    let eventTap = CGEvent.tapCreate(tap: .cgAnnotatedSessionEventTap,
+    let eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap,
                                       place: .headInsertEventTap,
                                       options: .defaultTap,
                                       eventsOfInterest: CGEventMask(eventMask),
@@ -254,4 +254,18 @@ func pasteByService() {
             try? paste.performAction(.press)
         }
     }
+}
+
+func canPerformCopy() -> UIElement? {
+    if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Safe Copy") {
+        return copy
+    }
+    return nil
+}
+
+func canPerformPaste() -> UIElement? {
+    if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let paste = app.findMenuItem(title: "Safe Paste") {
+        return paste
+    }
+    return nil
 }

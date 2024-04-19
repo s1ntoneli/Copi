@@ -70,7 +70,8 @@ struct PopupView: View {
             PopupItemView(title: "Copy", icon: "lock.shield")
                 .stag(0)
                 .onTapGesture {
-                    NSPasteboard.general.safeCopyPlainTextValue = vm.selectedText
+//                    NSPasteboard.general.safeCopyPlainTextValue = vm.selectedText
+                    copyByService()
                     PopupWindowController.shared.closeWindow()
                 }
                 .onHover { hover in
@@ -82,7 +83,8 @@ struct PopupView: View {
                 PopupItemView(title: "Paste", icon: "lock.shield")
                     .onTapGesture {
                         PopupWindowController.shared.closeWindow()
-                        pastePrivacy(text)
+                        pasteByService()
+//                        pastePrivacy(text)
                     }
                     .stag(1)
                     .onHover { hover in

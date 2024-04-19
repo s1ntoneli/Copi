@@ -18,16 +18,7 @@ class GlobalMode {
         // 监听复制
         Clipboard.shared.onNewCopy { newItem in
             print("on new copy", NSPasteboard.general.pasteboardItems!.count)
-            if Defaults[.globalMode], let items = NSPasteboard.general.pasteboardItems, !items.isEmpty, !items.contains(where: { $0.types.contains(.fromSecureClipX) }) {
-                print("not empty")
-                if items.contains(where: { $0.types.contains(.string) }) {
-                    print("contains string")
-                    measureTime {
-                        NSPasteboard.general.saveToSafeCopyValue()
-                        NSPasteboard.general.clearContents()
-                    }
-                }
-            }
+            NSPasteboard.general.safeCopyPlainTextValue = nil
         }
         
         // 监听粘贴
@@ -42,23 +33,21 @@ class GlobalMode {
             NSLog("event.flags \(event.flags.check(is: .maskCommand))")
             if event.flags.check(is: .maskCommand) && event.getIntegerValueField(.keyboardEventKeycode) == 9 {
                 // 检查上一次复制是否通过代理
-                if !NSPasteboard.general.pasteboardItems!.isEmpty || NSPasteboard.general.safeCopyValue == nil {
-                    return Unmanaged.passRetained(event)
-                }
-
-                // 代理复制的文字内容
-                NSPasteboard.general.onPrivateMode {
-                    //                    NSPasteboard.general.clearContents()
-                    NSPasteboard.general.writeObjects(NSPasteboard.general.safeCopyValue ?? [])
-//                    callSystemPaste()
-                    if let app = Application(NSRunningApplication.current), let paste = app.deepFirst(where: { $0.identifier == "paste:" || ($0.cmdChar == "V" && $0.cmdModifiers == 0) }) {
-                        print("found paste")
-                        try? paste.performAction(.press)
+                if let value = NSPasteboard.general.safeCopyPlainTextValue {
+                    if let item = canPerformPaste() {
+                        try? item.performAction(.press)
                     }
-
-                    NSPasteboard.general.safeCopyValue = NSPasteboard.general.safeCopyValue.copy()
+                    return nil
                 }
-                return nil
+            }
+            
+            // 复制
+            if event.flags.check(is: .maskCommand) && event.getIntegerValueField(.keyboardEventKeycode) == 8 {
+                if let item = canPerformCopy() {
+                    try? item.performAction(.press)
+                    NSPasteboard.general.clearContents()
+                    return nil
+                }
             }
             // 处理事件的回调函数
             return Unmanaged.passRetained(event)

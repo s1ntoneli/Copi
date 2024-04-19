@@ -84,6 +84,8 @@ class ManualMode {
         // Use `content`…
         NSPasteboard.general.safeCopyPlainTextValue = content
         print("copyText content:", content)
+        pasteboard.clearContents()
+        pasteboard.setString("", forType: .fromSecureClipX)
     }
 
     @objc func pasteText(_ pasteboard: NSPasteboard, userData: String?, error: NSErrorPointer) {
