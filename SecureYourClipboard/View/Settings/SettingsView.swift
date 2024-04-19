@@ -13,6 +13,7 @@ import Pow
 struct SettingsView: View {
 
     @Default(.showQuickActions) var quickActions: Bool
+    @Default(.manualMode) var manualMode: Bool
     @Default(.globalMode) var globalMode: Bool
     
     @State var conflictState = ""
@@ -21,23 +22,29 @@ struct SettingsView: View {
 
     var body: some View {
         Form {
-            Section("Global Mode") {
-                Text("Global Mode will proxy all the string with the second clipboard")
-                Toggle("Enabled", isOn: $globalMode)
+            Section {
+                Toggle("Global Mode", isOn: $globalMode)
+                Text("Global Mode will proxy all the text copied into the system clipboard")
             }
-            Section("The Second Clipboard") {
+            Section {
+                Toggle("Manual Mode", isOn: $manualMode)
+                Text("Manual Mode provide a new clipboard to copy and paste")
                 Toggle("Show Quick Action", isOn: $quickActions)
+                    .disabled(!manualMode)
                 KeyboardShortcuts.Recorder("Safe Copy", name: .safeCopy, onConflict: { _, _ in
                     safeCopyConflicts += 1
                 })
-                .changeEffect(.shake(rate: .fast), value: safeCopyConflicts)
+                .disabled(!manualMode)
+//                .changeEffect(.shake(rate: .fast), value: safeCopyConflicts)
                 KeyboardShortcuts.Recorder("Safe Paste", name: .safePaste, onConflict: { _, _ in
                     safePasteConflicts += 1
                 })
-                .changeEffect(.shake(rate: .fast), value: safePasteConflicts)
+                .disabled(!manualMode)
+//                .changeEffect(.shake(rate: .fast), value: safePasteConflicts)
             }
         }
         .formStyle(.grouped)
+        .controlSize(.mini)
     }
 }
 

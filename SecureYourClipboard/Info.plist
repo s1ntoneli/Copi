@@ -5,6 +5,40 @@
 	<key>NSServices</key>
 	<array>
 		<dict>
+			<key>NSReturnTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSPortName</key>
+			<string>pasteText</string>
+			<key>NSRequiredContext</key>
+			<dict/>
+			<key>NSMessage</key>
+			<string>pasteText</string>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Safe Paste</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>NSSendTypes</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>NSPortName</key>
+			<string>copyText</string>
+			<key>NSRequiredContext</key>
+			<dict/>
+			<key>NSMessage</key>
+			<string>copyText</string>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Safe Copy</string>
+			</dict>
+		</dict>
+		<dict>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>

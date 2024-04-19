@@ -9,6 +9,8 @@ import Foundation
 import AppKit
 import Carbon
 import Cocoa
+import AXSwift
+import AXSwiftExt
 
 // 模拟粘贴
 func pastePrivacy(_ text: String) {
@@ -199,24 +201,24 @@ func pollTask(every interval: TimeInterval, timeout: TimeInterval = 2, task: @es
     RunLoop.current.run()
 }
 
-func listenAndInterceptKeyEvent() {
-    let eventMask = (1 << CGEventType.keyDown.rawValue)
-    
-    // 创建一个事件监听器，并指定位置为 cghidEventTap
-    guard let eventTap =
-            CGEvent.tapCreate(tap: .cghidEventTap,
-                              place: .headInsertEventTap,
-                              options: .defaultTap,
-                              eventsOfInterest: CGEventMask(eventMask),
-                              callback: { (proxy, type, event, refcon) in
-                // 处理事件的回调函数
-                return Unmanaged.passRetained(event)
-            }, userInfo: nil) else { return }
-    
-    let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
-    CGEvent.tapEnable(tap: eventTap, enable: true)
-    CFRunLoopRun()
+func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBack) {
+    var eventMask = events.reduce(into: 0) { partialResult, eventType in
+        partialResult = partialResult | 1 << eventType.rawValue
+    }
+
+    // 创建一个事件监听器，并指定位置为cghidEventTap
+    let eventTap = CGEvent.tapCreate(tap: .cgAnnotatedSessionEventTap,
+                                      place: .headInsertEventTap,
+                                      options: .defaultTap,
+                                      eventsOfInterest: CGEventMask(eventMask),
+                                      callback: handler, userInfo: nil)
+    // 启用事件监听器
+    if let eventTap {
+        let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+        CGEvent.tapEnable(tap: eventTap, enable: true)
+        CFRunLoopRun()
+    }
 }
 
 extension NSPasteboard.PasteboardType {
@@ -232,4 +234,24 @@ func measureTime(block: () -> Void) {
     let milliseconds = Double(nanoseconds) / 1_000_000
     
     print("Execution time: \(milliseconds) milliseconds")
+}
+
+func copyByService() {
+    print("copyByService")
+    Task {
+        if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Safe Copy") {
+            print("found copy")
+            try? copy.performAction(.press)
+        }
+    }
+}
+
+func pasteByService() {
+    print("pasteByService")
+    Task {
+        if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let paste = app.findMenuItem(title: "Safe Paste") {
+            print("found paste")
+            try? paste.performAction(.press)
+        }
+    }
 }

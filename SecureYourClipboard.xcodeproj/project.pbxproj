@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		690CE47D2BD2039A00A16200 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 690CE47C2BD2039A00A16200 /* Pow */; };
 		690CE4802BD2118500A16200 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 690CE47F2BD2118500A16200 /* KeyboardShortcuts */; };
+		694153092BD22417006C983D /* AXSwiftExt in Frameworks */ = {isa = PBXBuildFile; productRef = 694153082BD22417006C983D /* AXSwiftExt */; };
+		6941530B2BD229B9006C983D /* GlobalMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6941530A2BD229B9006C983D /* GlobalMode.swift */; };
+		6941530D2BD22A3F006C983D /* WhiteListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6941530C2BD22A3F006C983D /* WhiteListMode.swift */; };
+		6941530F2BD22ADF006C983D /* ManualMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6941530E2BD22ADF006C983D /* ManualMode.swift */; };
 		698AD6432BC92FF3002659F5 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6422BC92FF3002659F5 /* StatusBarView.swift */; };
 		698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6462BCA3FE3002659F5 /* SettingsView.swift */; };
 		698AD64C2BCA411E002659F5 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD64B2BCA411E002659F5 /* KeyboardShortcuts.swift */; };
@@ -66,6 +70,10 @@
 
 /* Begin PBXFileReference section */
 		690CE47A2BD136EB00A16200 /* KeyboardShortcuts */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardShortcuts; path = ../KeyboardShortcuts; sourceTree = "<group>"; };
+		6941530A2BD229B9006C983D /* GlobalMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMode.swift; sourceTree = "<group>"; };
+		6941530C2BD22A3F006C983D /* WhiteListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteListMode.swift; sourceTree = "<group>"; };
+		6941530E2BD22ADF006C983D /* ManualMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMode.swift; sourceTree = "<group>"; };
+		694153102BD28729006C983D /* AXSwiftExt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AXSwiftExt; path = ../AXSwiftExt; sourceTree = "<group>"; };
 		698AD6422BC92FF3002659F5 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		698AD6442BCA2C48002659F5 /* SecureClipX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecureClipX-Bridging-Header.h"; sourceTree = "<group>"; };
 		698AD6462BCA3FE3002659F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -111,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				690CE47D2BD2039A00A16200 /* Pow in Frameworks */,
+				694153092BD22417006C983D /* AXSwiftExt in Frameworks */,
 				698AD6522BCA6BF2002659F5 /* Defaults in Frameworks */,
 				690CE4802BD2118500A16200 /* KeyboardShortcuts in Frameworks */,
 			);
@@ -159,6 +168,7 @@
 		69903C1B2BB131EA00661BA2 = {
 			isa = PBXGroup;
 			children = (
+				694153102BD28729006C983D /* AXSwiftExt */,
 				690CE47A2BD136EB00A16200 /* KeyboardShortcuts */,
 				69903C262BB131EB00661BA2 /* SecureYourClipboard */,
 				69903C3D2BB131ED00661BA2 /* SecureYourClipboardTests */,
@@ -188,6 +198,7 @@
 				69A2CA1D2BBA4C38008994F5 /* Resources */,
 				69903C592BB560AD00661BA2 /* Utilities */,
 				69903C272BB131EB00661BA2 /* SecureYourClipboardApp.swift */,
+				6941530E2BD22ADF006C983D /* ManualMode.swift */,
 				69903C292BB131EB00661BA2 /* ContentView.swift */,
 				69903C2B2BB131ED00661BA2 /* Assets.xcassets */,
 				69903C302BB131ED00661BA2 /* Persistence.swift */,
@@ -197,6 +208,8 @@
 				69903C572BB131FF00661BA2 /* Clipboard.swift */,
 				698AD6442BCA2C48002659F5 /* SecureClipX-Bridging-Header.h */,
 				698AD64B2BCA411E002659F5 /* KeyboardShortcuts.swift */,
+				6941530A2BD229B9006C983D /* GlobalMode.swift */,
+				6941530C2BD22A3F006C983D /* WhiteListMode.swift */,
 			);
 			path = SecureYourClipboard;
 			sourceTree = "<group>";
@@ -317,6 +330,7 @@
 				698AD6512BCA6BF2002659F5 /* Defaults */,
 				690CE47C2BD2039A00A16200 /* Pow */,
 				690CE47F2BD2118500A16200 /* KeyboardShortcuts */,
+				694153082BD22417006C983D /* AXSwiftExt */,
 			);
 			productName = SecureYourClipboard;
 			productReference = 69903C242BB131EB00661BA2 /* SecureYourClipboard.app */;
@@ -394,6 +408,7 @@
 				698AD6502BCA6BF2002659F5 /* XCRemoteSwiftPackageReference "Defaults" */,
 				690CE47B2BD2039A00A16200 /* XCRemoteSwiftPackageReference "Pow" */,
 				690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				694153072BD22417006C983D /* XCRemoteSwiftPackageReference "AXSwiftExt" */,
 			);
 			productRefGroup = 69903C252BB131EB00661BA2 /* Products */;
 			projectDirPath = "";
@@ -441,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69A2CA412BBBE817008994F5 /* MouseEventCatcher.swift in Sources */,
+				6941530F2BD22ADF006C983D /* ManualMode.swift in Sources */,
 				698AD64C2BCA411E002659F5 /* KeyboardShortcuts.swift in Sources */,
 				69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */,
 				69A2CA2D2BBA5CD5008994F5 /* SwitchListView.swift in Sources */,
@@ -448,6 +464,7 @@
 				69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */,
 				698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */,
 				69903C602BB56CD000661BA2 /* Security.swift in Sources */,
+				6941530D2BD22A3F006C983D /* WhiteListMode.swift in Sources */,
 				69A2CA482BBD33F2008994F5 /* Selection.swift in Sources */,
 				69903C5B2BB560BB00661BA2 /* TextFilter.swift in Sources */,
 				698AD6542BCA6C15002659F5 /* UserDefaultsKey.swift in Sources */,
@@ -462,6 +479,7 @@
 				69A2CA372BBAA08F008994F5 /* getselection.applescript in Sources */,
 				69903C2A2BB131EB00661BA2 /* ContentView.swift in Sources */,
 				69903C282BB131EB00661BA2 /* SecureYourClipboardApp.swift in Sources */,
+				6941530B2BD229B9006C983D /* GlobalMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -813,6 +831,14 @@
 				version = 2.0.0;
 			};
 		};
+		694153072BD22417006C983D /* XCRemoteSwiftPackageReference "AXSwiftExt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/s1ntoneli/AXSwiftExt";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 		698AD6502BCA6BF2002659F5 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -833,6 +859,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
 			productName = KeyboardShortcuts;
+		};
+		694153082BD22417006C983D /* AXSwiftExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 694153072BD22417006C983D /* XCRemoteSwiftPackageReference "AXSwiftExt" */;
+			productName = AXSwiftExt;
 		};
 		698AD6512BCA6BF2002659F5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

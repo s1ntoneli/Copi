@@ -12,4 +12,5 @@ extension Defaults.Keys {
 
     static let showQuickActions = Key<Bool>("showQuickActions", default: false)
     static let globalMode = Key<Bool>("globalMode", default: false)
+    static let manualMode = Key<Bool>("manualMode", default: true)
 }
