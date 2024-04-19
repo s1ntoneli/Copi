@@ -19,39 +19,22 @@ struct ContentView: View {
     @State var changeCount = 0
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            VStack {
-                Button {
-                    call()
-                } label: {
-                    Text("Get")
-                }
-                Text("Select an item \(changeCount)")
-                    .textSelection(.enabled)
-            }
-        }
+        SettingsView()
         .task {
             Clipboard.shared.onNewCopy { items in
                 changeCount = NSPasteboard.general.changeCount
             }
         }
+        VStack {
+            Button {
+                call()
+            } label: {
+                Text("Get")
+            }
+            Text("Select an item \(changeCount)")
+                .textSelection(.enabled)
+        }
+        
     }
     
     func call() {
@@ -105,3 +88,4 @@ private let itemFormatter: DateFormatter = {
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
+

@@ -114,6 +114,7 @@ func getSelectedTextByCopy() -> String? {
         let changeCount = pasteboard.changeCount
         print("changeCount before copy", changeCount)
         callSystemCopy()
+//        executeAppleScript()
         
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global().async {
@@ -138,4 +139,43 @@ func getSelectedTextByCopy() -> String? {
 
 func getSelectedText() -> String? {
     return getSelectedTextByAXUI() ?? getSelectedTextByCopy()
+}
+
+func executeAppleScript() {
+    let script = """
+    tell application "System Events"
+        keystroke "c" using command down
+    end tell
+    """
+    
+    var error: NSDictionary?
+    if let appleScript = NSAppleScript(source: script) {
+        appleScript.executeAndReturnError(&error)
+    }
+}
+
+import Cocoa
+
+class TextSelectionServiceProvider: NSObject {
+    override init() {
+        super.init()
+        NSApp.servicesProvider = self
+    }
+    
+    @objc func processSelectedText(pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
+        if let selectedText = pboard.string(forType: .string) {
+            // 在这里处理选中的文本
+            print("Selected Text: \(selectedText)")
+        }
+    }
+}
+
+func runService() {
+    let textSelectionServiceProvider = TextSelectionServiceProvider()
+
+    // 服务方法的名称可以根据您的需求进行自定义
+    let serviceName = NSRegisterServicesProvider(textSelectionServiceProvider, "Process Selected Text")
+
+    // 确保服务提供者对象在应用程序生命周期内保持活动状态
+//    RunLoop.current.run()
 }

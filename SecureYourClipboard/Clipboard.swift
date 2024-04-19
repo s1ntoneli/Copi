@@ -17,7 +17,7 @@ class Clipboard {
     var changeCount: Int
     
     private let pasteboard = NSPasteboard.general
-    private let timerInterval = 0.05
+    private let timerInterval = 0.02
     
     private var accessibilityAlert: NSAlert {
         let alert = NSAlert()

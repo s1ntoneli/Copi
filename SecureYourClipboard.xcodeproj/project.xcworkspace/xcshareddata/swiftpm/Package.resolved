@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "defaults",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sindresorhus/Defaults",
+      "state" : {
+        "branch" : "main",
+        "revision" : "38925e3cfacf3fb89a81a35b1cd44fd5a5b7e0fa"
+      }
+    },
+    {
+      "identity" : "pow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmergeTools/Pow",
+      "state" : {
+        "revision" : "cc014eba4b65f689cadc281ad925de5607f2adc9",
+        "version" : "1.0.3"
+      }
+    }
+  ],
+  "version" : 2
+}

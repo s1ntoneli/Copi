@@ -20,14 +20,14 @@ func pastePrivacy(_ text: String) {
 
 func callSystemPaste() {
     func keyEvents(forPressAndReleaseVirtualKey virtualKey: Int) -> [CGEvent] {
-        let eventSource = CGEventSource(stateID: .hidSystemState)
+        let eventSource = CGEventSource(stateID: .privateState)
         return [
             CGEvent(keyboardEventSource: eventSource, virtualKey: CGKeyCode(virtualKey), keyDown: true)!,
             CGEvent(keyboardEventSource: eventSource, virtualKey: CGKeyCode(virtualKey), keyDown: false)!,
         ]
     }
     
-    let tapLocation = CGEventTapLocation.cghidEventTap
+    let tapLocation = CGEventTapLocation.cgAnnotatedSessionEventTap
     let events = keyEvents(forPressAndReleaseVirtualKey: 9)
     
     events.forEach {
@@ -38,19 +38,21 @@ func callSystemPaste() {
 
 func callSystemCopy() {
     func keyEvents(forPressAndReleaseVirtualKey virtualKey: Int) -> [CGEvent] {
-        let eventSource = CGEventSource(stateID: .hidSystemState)
+        let eventSource = CGEventSource(stateID: .privateState)
+        eventSource?.setLocalEventsFilterDuringSuppressionState([.permitLocalMouseEvents, .permitSystemDefinedEvents, .permitLocalKeyboardEvents], state: .numberOfEventSuppressionStates)
         return [
             CGEvent(keyboardEventSource: eventSource, virtualKey: CGKeyCode(virtualKey), keyDown: true)!,
             CGEvent(keyboardEventSource: eventSource, virtualKey: CGKeyCode(virtualKey), keyDown: false)!,
         ]
     }
     
-    let tapLocation = CGEventTapLocation.cghidEventTap
+    let tapLocation = CGEventTapLocation.cgAnnotatedSessionEventTap
     let events = keyEvents(forPressAndReleaseVirtualKey: 8)
     
     events.forEach {
         $0.flags = .maskCommand
-        $0.post(tap: tapLocation)
+//        $0.post(tap: tapLocation)
+        $0.postToPid(NSWorkspace.shared.frontmostApplication?.processIdentifier ?? 0)
     }
 }
 
@@ -112,6 +114,9 @@ extension NSPasteboard {
 // safe copy value
 private var kSafeCopyKey = 0
 extension NSPasteboard {
+    func safeCopy() {
+        
+    }
     var safeCopyValue: [NSPasteboardItem]? {
         get {
             objc_getAssociatedObject(self, &kSafeCopyKey) as? [NSPasteboardItem]
@@ -120,7 +125,35 @@ extension NSPasteboard {
             objc_setAssociatedObject(self, &kSafeCopyKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
+
+    func saveToSafeCopyValue() {
+//        self.safeCopyValue = pasteboardItems.copy()
+        self.safeCopyValue = pasteboardItems.copy()
+    }
 }
+
+// clone
+extension [NSPasteboardItem]? {
+    func copy() -> [NSPasteboardItem] {
+        var copyValue = [NSPasteboardItem]()
+
+        for item in self ?? [] {
+            let newItem = NSPasteboardItem()
+            for type in item.types {
+                if let data = item.data(forType: type) {
+                    newItem.setData(data, forType: type)
+                }
+            }
+            copyValue.append(newItem)
+        }
+        let fromSCX = NSPasteboardItem()
+        fromSCX.setData(Data(), forType: .fromSecureClipX)
+        copyValue.append(fromSCX)
+        
+        return copyValue
+    }
+}
+
 // safe copy plain text value
 private var kSafeCopyPlainTextKey = 0
 extension NSPasteboard {
@@ -130,6 +163,19 @@ extension NSPasteboard {
         }
         set {
             objc_setAssociatedObject(self, &kSafeCopyPlainTextKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+        }
+    }
+}
+
+// safe copy plain text value
+private var kSelectedTextKey = 0
+extension NSPasteboard {
+    var selectedTextValue: String? {
+        get {
+            objc_getAssociatedObject(self, &kSelectedTextKey) as? String
+        }
+        set {
+            objc_setAssociatedObject(self, &kSelectedTextKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }
@@ -151,4 +197,39 @@ func pollTask(every interval: TimeInterval, timeout: TimeInterval = 2, task: @es
     }
     
     RunLoop.current.run()
+}
+
+func listenAndInterceptKeyEvent() {
+    let eventMask = (1 << CGEventType.keyDown.rawValue)
+    
+    // 创建一个事件监听器，并指定位置为 cghidEventTap
+    guard let eventTap =
+            CGEvent.tapCreate(tap: .cghidEventTap,
+                              place: .headInsertEventTap,
+                              options: .defaultTap,
+                              eventsOfInterest: CGEventMask(eventMask),
+                              callback: { (proxy, type, event, refcon) in
+                // 处理事件的回调函数
+                return Unmanaged.passRetained(event)
+            }, userInfo: nil) else { return }
+    
+    let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
+    CGEvent.tapEnable(tap: eventTap, enable: true)
+    CFRunLoopRun()
+}
+
+extension NSPasteboard.PasteboardType {
+    static var fromSecureClipX: NSPasteboard.PasteboardType = .init("com.gokoding.SecureYourClipboard")
+}
+
+func measureTime(block: () -> Void) {
+    let startTime = DispatchTime.now()
+    block()
+    let endTime = DispatchTime.now()
+    
+    let nanoseconds = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
+    let milliseconds = Double(nanoseconds) / 1_000_000
+    
+    print("Execution time: \(milliseconds) milliseconds")
 }
