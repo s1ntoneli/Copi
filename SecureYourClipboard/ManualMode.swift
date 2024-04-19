@@ -84,6 +84,7 @@ class ManualMode {
         // Use `content`…
         NSPasteboard.general.safeCopyPlainTextValue = content
         print("copyText content:", content)
+        // need to set the return data, otherwise the focus will leave the foreground app after the service call is completed
         pasteboard.clearContents()
         pasteboard.setString("", forType: .fromSecureClipX)
     }
