@@ -53,8 +53,7 @@ func callSystemCopy() {
     
     events.forEach {
         $0.flags = .maskCommand
-//        $0.post(tap: tapLocation)
-        $0.postToPid(NSWorkspace.shared.frontmostApplication?.processIdentifier ?? 0)
+        $0.post(tap: tapLocation)
     }
 }
 
@@ -165,6 +164,19 @@ extension NSPasteboard {
         }
         set {
             objc_setAssociatedObject(self, &kSafeCopyPlainTextKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+            safeCopyChangeCountValue += 1
+        }
+    }
+}
+// safe copy changeCount
+private var kSafeCopyChangeCountKey = 0
+extension NSPasteboard {
+    var safeCopyChangeCountValue: Int {
+        get {
+            objc_getAssociatedObject(self, &kSafeCopyChangeCountKey) as? Int ?? 0
+        }
+        set {
+            objc_setAssociatedObject(self, &kSafeCopyChangeCountKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
     }
 }
@@ -238,12 +250,12 @@ func measureTime(block: () -> Void) {
 
 func copyByService() {
     print("copyByService")
-    Task {
+//    Task {
         if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Safe Copy") {
             print("found copy")
             try? copy.performAction(.press)
         }
-    }
+//    }
 }
 
 func pasteByService() {
@@ -254,6 +266,13 @@ func pasteByService() {
             try? paste.performAction(.press)
         }
     }
+}
+
+func canPerformSelectedText() -> UIElement? {
+    if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "processSelectedText") {
+        return copy
+    }
+    return nil
 }
 
 func canPerformCopy() -> UIElement? {

@@ -18,7 +18,7 @@ class GlobalMode {
         // 监听复制
         Clipboard.shared.onNewCopy { newItem in
             print("on new copy", NSPasteboard.general.pasteboardItems!.count)
-            NSPasteboard.general.safeCopyPlainTextValue = nil
+            NSPasteboard.safeCopy.setString(nil)
         }
         
         // 监听粘贴
@@ -33,7 +33,7 @@ class GlobalMode {
             NSLog("event.flags \(event.flags.check(is: .maskCommand))")
             if event.flags.check(is: .maskCommand) && event.getIntegerValueField(.keyboardEventKeycode) == 9 {
                 // 检查上一次复制是否通过代理
-                if let value = NSPasteboard.general.safeCopyPlainTextValue {
+                if let value = NSPasteboard.safeCopy.string() {
                     if let item = canPerformPaste() {
                         try? item.performAction(.press)
                     }

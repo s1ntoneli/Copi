@@ -46,19 +46,14 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>send To ${EXECUTABLE_NAME}</string>
-			</dict>
-			<key>NSKeyEquivalent</key>
-			<dict>
-				<key>default</key>
-				<string></string>
+				<string>processSelectedText</string>
 			</dict>
 			<key>NSRequiredContext</key>
 			<dict/>
 			<key>NSMessage</key>
 			<string>processSelectedText</string>
 			<key>NSPortName</key>
-			<string>${EXECUTABLE_NAME}</string>
+			<string>processSelectedText</string>
 			<key>NSReturnTypes</key>
 			<array>
 				<string>NSStringPboardType</string>
@@ -66,7 +61,6 @@
 			<key>NSSendTypes</key>
 			<array>
 				<string>NSStringPboardType</string>
-				<string>public.data</string>
 			</array>
 		</dict>
 	</array>

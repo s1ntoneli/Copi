@@ -79,7 +79,7 @@ struct PopupView: View {
                         selections = [0]
                     }
                 }
-            if let text = NSPasteboard.general.safeCopyPlainTextValue {
+            if let text = NSPasteboard.safeCopy.string() {
                 PopupItemView(title: "Paste", icon: "lock.shield")
                     .onTapGesture {
                         PopupWindowController.shared.closeWindow()

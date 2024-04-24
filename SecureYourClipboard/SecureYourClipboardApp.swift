@@ -25,7 +25,7 @@ struct SecureYourClipboardApp: App {
             EmptyView()
                 .frame(width: 0, height: 0)
                 .onAppear(perform: {
-                    NSApp.setActivationPolicy(.accessory)
+//                    NSApp.setActivationPolicy(.accessory)
                 })
         }
         .windowResizability(.contentSize)
