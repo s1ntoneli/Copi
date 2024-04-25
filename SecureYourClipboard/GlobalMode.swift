@@ -17,8 +17,10 @@ class GlobalMode {
     func initialize() {
         // 监听复制
         NSPasteboard.general.onNewCopy { newItem in
-            print("on new copy", NSPasteboard.general.pasteboardItems!.count)
-            NSPasteboard.safeCopy.setString(nil)
+            print("on new copy", NSPasteboard.general.pasteboardItems?.count)
+            if NSPasteboard.general.pasteboardItems?.isEmpty != true {
+                NSPasteboard.safeCopy.setString(nil)
+            }
         }
         
         // 监听粘贴

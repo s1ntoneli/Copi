@@ -77,14 +77,14 @@ struct SettingsView: View {
     }
     
     var secureClipboard: some View {
-        Section("Secure Clipboard Content(Safe)") {
+        Section("Secure Clipboard (Safe)") {
             Text(secureClipboardContent ?? "nil")
         }
     }
     
     // 系统剪贴板内容
     var systemClipboard: some View {
-        Section("System Clipboard Content(Unsafe)") {
+        Section {
             if let item = systemClipboardContent {
                 VStack(alignment: .leading) {
                     ScrollView(.horizontal) {
@@ -110,6 +110,15 @@ struct SettingsView: View {
                 }
             } else {
                 Text("Empty")
+            }
+        } header: {
+            HStack {
+                Text("System Clipboard (Unsafe)")
+                Button {
+                    NSPasteboard.general.clearContents()
+                } label: {
+                    Text("Clear")
+                }
             }
         }
     }
