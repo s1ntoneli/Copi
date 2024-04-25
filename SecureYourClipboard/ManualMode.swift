@@ -15,35 +15,35 @@ class ManualMode {
 
     func initialize() {
         KeyboardShortcuts.onKeyUp(for: .safeCopy) {
-            guard Defaults[.manualMode] else {
-                return
-            }
-            guard !Defaults[.globalMode] else {
+            guard Defaults[.isOn], !Defaults[.overrideShortcuts] else {
                 return
             }
             copyByService()
-            
-//            NSPasteboard.general.safeCopyPlainTextValue = NSPasteboard.general.selectedTextValue
-//            print("safe copy", NSPasteboard.general.safeCopyPlainTextValue)
+            PopupWindowController.shared.closeWindow()
         }
         KeyboardShortcuts.onKeyUp(for: .safePaste) {
-            guard Defaults[.manualMode] else {
+            guard Defaults[.isOn], !Defaults[.overrideShortcuts] else {
                 return
             }
-            guard !Defaults[.globalMode] else {
-                return
-            }
-            
+
             pasteByService()
+            PopupWindowController.shared.closeWindow()
         }
         
         MouseEventCatcher.shared.onSelectEventHooks { event in
+            guard Defaults[.isOn], Defaults[.showQuickActions] else {
+                return
+            }
+
+            let location = event.locationInWindow
             Task {
-                let text = getSelectedText()
-                NSPasteboard.general.selectedTextValue = text
-                print("get", text)
-                if let text, Defaults[.showQuickActions] {
-                    await PopupWindowController.shared.showWindowAt(event.locationInWindow, text)
+                let copyItem = canPerformCopy()
+                let pasteItem = canPerformPaste()
+                let canCopy = copyItem != nil
+                let canPaste = pasteItem != nil && NSPasteboard.safeCopy.string() != nil
+                
+                if canCopy || canPaste {
+                    await PopupWindowController.shared.showWindowAt(location, copyItem: copyItem, pasteItem: pasteItem)
                 } else {
                     await PopupWindowController.shared.closeWindow()
                 }
@@ -52,7 +52,6 @@ class ManualMode {
         MouseEventCatcher.shared.onUnSelectEventHooks { event in
             PopupWindowController.shared.closeWindow()
         }
-        //        runService()
         NSApp.servicesProvider = self
         NSUpdateDynamicServices()
     }

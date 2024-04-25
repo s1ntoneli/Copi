@@ -15,7 +15,7 @@ func interceptCopy(_ items: [NSPasteboardItem], filters: [SensitiveDataRegexMode
             if let value = item.string(forType: .string) {
                 let newValue = filters.reduce(value, { $1.filter($0) })
                 if newValue != value {
-                    Clipboard.shared.copy(newValue, updateChangeCount: true)
+                    NSPasteboard.general.copy(newValue, updateChangeCount: true)
                 }
             }
         }

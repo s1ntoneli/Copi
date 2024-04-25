@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("applicationDidFinishLaunching")
-        Clipboard.shared.startListening()
+        NSPasteboard.general.startListening()
+        NSPasteboard.safeCopy.startListening()
         
         GlobalMode.shared.initialize()
         ManualMode.shared.initialize()

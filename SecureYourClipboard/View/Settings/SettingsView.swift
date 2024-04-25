@@ -13,56 +13,128 @@ import Pow
 struct SettingsView: View {
 
     @Default(.showQuickActions) var quickActions: Bool
-    @Default(.manualMode) var manualMode: Bool
-    @Default(.globalMode) var globalMode: Bool
+    @Default(.isOn) var isOn: Bool
+    @Default(.overrideShortcuts) var globalMode: Bool
     
-    @State var conflictState = ""
-    @State var safeCopyConflicts = 0
-    @State var safePasteConflicts = 0
-    
-    @State private var systemClipboardContent: [NSPasteboardItem] = []
+    @State private var systemClipboardContent: NSPasteboardItem? = nil
+    @State private var systemClipboardTypeSelection: String = ""
     @State private var secureClipboardContent: String? = nil
-
+    
     var body: some View {
-        Form {
-//            Section {
-//                Toggle("Global Mode", isOn: $globalMode)
-//                Text("Global Mode will proxy all the text copied into the system clipboard")
-//            }
-//            Section {
-//                Toggle("Manual Mode", isOn: $manualMode)
-//                Text("Manual Mode provide a new clipboard to copy and paste")
-                Toggle("Show Quick Action", isOn: $quickActions)
-                    .disabled(!manualMode)
-            Section("Shortcut") {
-                Toggle("Override CMD+C/CMD+V", isOn: $globalMode)
-                KeyboardShortcuts.Recorder("Safe Copy", name: .safeCopy, onConflict: { _, _ in
-                    safeCopyConflicts += 1
-                })
-                .disabled(!manualMode || globalMode)
-                //                .changeEffect(.shake(rate: .fast), value: safeCopyConflicts)
-                KeyboardShortcuts.Recorder("Safe Paste", name: .safePaste, onConflict: { _, _ in
-                    safePasteConflicts += 1
-                })
-                .disabled(!manualMode || globalMode)
-                //                .changeEffect(.shake(rate: .fast), value: safePasteConflicts)
-                //            }
+        ScrollView {
+            Form {
+                Section {
+                    if isOn {
+                        toolbar
+                        shortcuts
+                        secureClipboard
+                    }
+                    systemClipboard
+                } header: {
+                    header
+                }
             }
-            Section("System Clipboard") {
-                
-            }
-            Section("Secure Clipboard") {
-                Text("\(String(describing: secureClipboardContent))")
-            }
+            .formStyle(.grouped)
+            .controlSize(.mini)
+            .frame(width: 300)
+            .animation(.default, value: isOn)
         }
-        .formStyle(.grouped)
-        .controlSize(.mini)
         .task {
-            Clipboard.shared.onNewCopy { items in
-                systemClipboardContent = items
-            }
-            secureClipboardContent = NSPasteboard.safeCopy.string()
+            onStart()
         }
+        .fixedSize()
+    }
+    
+    // MARK: - Views
+    var header: some View {
+        return HStack {
+            Text("SecureClipX is")
+            Spacer()
+            Toggle(isOn ? "On" : "Off", isOn: $isOn)
+                .toggleStyle(.button)
+                .controlSize(.regular)
+        }
+        .font(.headline)
+    }
+    
+    var toolbar: some View {
+        Section("Action Bar") {
+            Toggle("Show Action Bar on Selection", isOn: $quickActions)
+                .disabled(!isOn)
+        }
+    }
+    
+    var shortcuts: some View {
+        Section("Shortcuts") {
+            Toggle("Override ⌘C/⌘V", isOn: $globalMode)
+            KeyboardShortcuts.Recorder("Safe Copy", name: .safeCopy, onConflict: { _, _ in
+            })
+            .disabled(!isOn || globalMode)
+            KeyboardShortcuts.Recorder("Safe Paste", name: .safePaste, onConflict: { _, _ in
+            })
+            .disabled(!isOn || globalMode)
+        }
+    }
+    
+    var secureClipboard: some View {
+        Section("Secure Clipboard Content(Safe)") {
+            Text(secureClipboardContent ?? "nil")
+        }
+    }
+    
+    // 系统剪贴板内容
+    var systemClipboard: some View {
+        Section("System Clipboard Content(Unsafe)") {
+            if let item = systemClipboardContent {
+                VStack(alignment: .leading) {
+                    ScrollView(.horizontal) {
+                        Picker("", selection: $systemClipboardTypeSelection) {
+                            ForEach(item.types, id: \.rawValue) { type in
+                                Text(type.rawValue.prefix(12))
+                                    .tag(type.rawValue)
+                            }
+                        }.pickerStyle(.segmented)
+                            .fixedSize()
+                    }
+                    .scrollIndicators(.never)
+                    let selection = systemClipboardTypeSelection
+                    if !selection.isEmpty {
+                        if selection == NSPasteboard.PasteboardType.string.rawValue {
+                            Text(item.string(forType: .string) ?? "")
+                                .lineLimit(5)
+                        } else {
+                            Text("\(item.data(forType: .init(selection))?.count ?? 0) Bytes")
+                                .lineLimit(5)
+                        }
+                    }
+                }
+            } else {
+                Text("Empty")
+            }
+        }
+    }
+    
+    
+    // MARK: - Methods
+    func onStart() {
+        updateSystemPasteboardItem(NSPasteboard.general.pasteboardItems ?? [])
+        updateSecurePasteboard()
+        
+        NSPasteboard.general.onNewCopy { items in
+            updateSystemPasteboardItem(items)
+        }
+        NSPasteboard.safeCopy.onNewCopy { items in
+            updateSecurePasteboard()
+        }
+    }
+    
+    func updateSystemPasteboardItem(_ items: [NSPasteboardItem]) {
+        systemClipboardContent = items.first
+        systemClipboardTypeSelection = systemClipboardContent?.types.first?.rawValue ?? ""
+    }
+    
+    func updateSecurePasteboard() {
+        secureClipboardContent = NSPasteboard.safeCopy.string()
     }
 }
 

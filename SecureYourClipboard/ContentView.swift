@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         SettingsView()
         .task {
-            Clipboard.shared.onNewCopy { items in
+            NSPasteboard.general.onNewCopy { items in
                 changeCount = NSPasteboard.general.changeCount
             }
         }

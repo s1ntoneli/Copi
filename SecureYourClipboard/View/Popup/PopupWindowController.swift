@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import AXSwift
 
 class PopupWindowController: NSWindowController, NSWindowDelegate {
     static let shared = PopupWindowController()
@@ -38,7 +39,17 @@ class PopupWindowController: NSWindowController, NSWindowDelegate {
 
         let location = NSPoint(x: mouseLocation.x - window.frame.width / 2, y: mouseLocation.y + window.frame.height / 2)
         window.setFrameOrigin(location)
-        viewModel.selectedText = text
+        showWindow(nil)
+    }
+    
+    func showWindowAt(_ mouseLocation: NSPoint, copyItem: UIElement?, pasteItem: UIElement?) {
+        guard let window = window else { return }
+        window.makeKeyAndOrderFront(nil)
+
+        let location = NSPoint(x: mouseLocation.x - window.frame.width / 2, y: mouseLocation.y + window.frame.height / 2)
+        window.setFrameOrigin(location)
+        viewModel.copyItem = copyItem
+        viewModel.pasteItem = pasteItem
         showWindow(nil)
     }
     
@@ -57,7 +68,8 @@ class PopupWindow: NSPanel {
 }
 
 class PopupViewModel: ObservableObject {
-    @Published var selectedText: String? = nil
+    @Published var copyItem: UIElement?
+    @Published var pasteItem: UIElement?
 }
 
 struct PopupView: View {
@@ -67,24 +79,24 @@ struct PopupView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            PopupItemView(title: "Copy", icon: "lock.shield")
-                .stag(0)
-                .onTapGesture {
-//                    NSPasteboard.general.safeCopyPlainTextValue = vm.selectedText
-                    copyByService()
-                    PopupWindowController.shared.closeWindow()
-                }
-                .onHover { hover in
-                    if hover {
-                        selections = [0]
+            if let copyItem = vm.copyItem {
+                PopupItemView(title: "Copy", icon: "lock.shield")
+                    .stag(0)
+                    .onTapGesture {
+                        try? copyItem.performAction(.press)
+                        PopupWindowController.shared.closeWindow()
                     }
-                }
-            if let text = NSPasteboard.safeCopy.string() {
+                    .onHover { hover in
+                        if hover {
+                            selections = [0]
+                        }
+                    }
+            }
+            if let text = NSPasteboard.safeCopy.string(), let pasteItem = vm.pasteItem {
                 PopupItemView(title: "Paste", icon: "lock.shield")
                     .onTapGesture {
                         PopupWindowController.shared.closeWindow()
-                        pasteByService()
-//                        pastePrivacy(text)
+                        try? pasteItem.performAction(.press)
                     }
                     .stag(1)
                     .onHover { hover in

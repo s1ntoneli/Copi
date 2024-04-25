@@ -16,14 +16,14 @@ class GlobalMode {
 
     func initialize() {
         // 监听复制
-        Clipboard.shared.onNewCopy { newItem in
+        NSPasteboard.general.onNewCopy { newItem in
             print("on new copy", NSPasteboard.general.pasteboardItems!.count)
             NSPasteboard.safeCopy.setString(nil)
         }
         
         // 监听粘贴
         listenAndInterceptKeyEvent(events: [.keyDown]) { proxy, type, event, _ in
-            guard Defaults[.globalMode] else {
+            guard Defaults[.overrideShortcuts] else {
                 return Unmanaged.passRetained(event)
             }
             

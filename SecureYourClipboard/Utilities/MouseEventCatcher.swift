@@ -22,6 +22,7 @@ class MouseEventCatcher {
     var downMonitor: Any? = nil
     var dragMonitor: Any? = nil
     var scrollWheelMonitor: Any? = nil
+    var keyboardMonitor: Any? = nil
     
     init() {
         // 拖拽判断
@@ -87,6 +88,11 @@ class MouseEventCatcher {
                     self.notifyAllSelectHooks(event: event)
                 }
                 downTimer = nil
+            }
+        })
+        keyboardMonitor = NSEvent.addGlobalMonitorForEvents(matching: .keyDown, handler: { event in
+            if let characters = event.characters?.first {
+                self.notifyAllUnSelectHooks(event: event)
             }
         })
     }
