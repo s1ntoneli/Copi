@@ -9,6 +9,7 @@ import SwiftUI
 import KeyboardShortcuts
 import Defaults
 import Pow
+import LaunchAtLogin
 
 struct SettingsView: View {
 
@@ -30,6 +31,7 @@ struct SettingsView: View {
                         secureClipboard
                     }
                     systemClipboard
+                    others
                 } header: {
                     header
                 }
@@ -123,6 +125,12 @@ struct SettingsView: View {
         }
     }
     
+    // other settings
+    var others: some View {
+        Section("Others") {
+            LaunchAtLogin.Toggle()
+        }
+    }
     
     // MARK: - Methods
     func onStart() {
