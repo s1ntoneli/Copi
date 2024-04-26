@@ -3,10 +3,10 @@
     {
       "identity" : "appupdater",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/AppUpdater.git",
+      "location" : "https://github.com/s1ntoneli/AppUpdater",
       "state" : {
-        "branch" : "master",
-        "revision" : "078432c8e9e53edff6097ae8e916eee30769c941"
+        "revision" : "34f03b7cea97bbc1f4ee19dc9bcb9bb055038b71",
+        "version" : "0.1.1"
       }
     },
     {
@@ -25,15 +25,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "38925e3cfacf3fb89a81a35b1cd44fd5a5b7e0fa"
-      }
-    },
-    {
-      "identity" : "foundation",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/PromiseKit/Foundation",
-      "state" : {
-        "revision" : "985f17fa69ee0e5b7eb3ff9be87ffc4e05fc0927",
-        "version" : "3.4.0"
       }
     },
     {
@@ -64,21 +55,12 @@
       }
     },
     {
-      "identity" : "promisekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/PromiseKit.git",
-      "state" : {
-        "revision" : "8a98e31a47854d3180882c8068cc4d9381bf382d",
-        "version" : "6.22.1"
-      }
-    },
-    {
       "identity" : "version",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mxcl/Version",
+      "location" : "https://github.com/mxcl/Version.git",
       "state" : {
-        "revision" : "200046c93f6d5d78a6d72bfd9c0b27a95e9c0a2b",
-        "version" : "1.2.0"
+        "revision" : "1fe824b80d89201652e7eca7c9252269a1d85e25",
+        "version" : "2.0.1"
       }
     }
   ],
