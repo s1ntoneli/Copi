@@ -18,6 +18,9 @@
 		694153172BDA7032006C983D /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 694153162BDA7032006C983D /* LaunchAtLogin */; };
 		698394482BDAAF79004B5C11 /* AppUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = 698394472BDAAF79004B5C11 /* AppUpdater */; };
 		6983944A2BDAB81B004B5C11 /* AppUpdaterGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */; };
+		6983944D2BDB556A004B5C11 /* Process+Coroutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6983944C2BDB556A004B5C11 /* Process+Coroutine.swift */; };
+		6983944F2BDB73FB004B5C11 /* NSURLSession+Coroutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6983944E2BDB73FB004B5C11 /* NSURLSession+Coroutine.swift */; };
+		698394512BDB80EC004B5C11 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698394502BDB80EC004B5C11 /* Error.swift */; };
 		698AD6432BC92FF3002659F5 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6422BC92FF3002659F5 /* StatusBarView.swift */; };
 		698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6462BCA3FE3002659F5 /* SettingsView.swift */; };
 		698AD64C2BCA411E002659F5 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD64B2BCA411E002659F5 /* KeyboardShortcuts.swift */; };
@@ -82,6 +85,9 @@
 		694153112BD94F09006C983D /* LogUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtilities.swift; sourceTree = "<group>"; };
 		694153132BD9545B006C983D /* NSPasteboard+New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPasteboard+New.swift"; sourceTree = "<group>"; };
 		698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdaterGithub.swift; sourceTree = "<group>"; };
+		6983944C2BDB556A004B5C11 /* Process+Coroutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Process+Coroutine.swift"; sourceTree = "<group>"; };
+		6983944E2BDB73FB004B5C11 /* NSURLSession+Coroutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURLSession+Coroutine.swift"; sourceTree = "<group>"; };
+		698394502BDB80EC004B5C11 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		698AD6422BC92FF3002659F5 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		698AD6442BCA2C48002659F5 /* SecureClipX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecureClipX-Bridging-Header.h"; sourceTree = "<group>"; };
 		698AD6462BCA3FE3002659F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -262,6 +268,9 @@
 				694153112BD94F09006C983D /* LogUtilities.swift */,
 				694153132BD9545B006C983D /* NSPasteboard+New.swift */,
 				698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */,
+				698394502BDB80EC004B5C11 /* Error.swift */,
+				6983944C2BDB556A004B5C11 /* Process+Coroutine.swift */,
+				6983944E2BDB73FB004B5C11 /* NSURLSession+Coroutine.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -506,6 +515,7 @@
 				698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */,
 				69903C602BB56CD000661BA2 /* Security.swift in Sources */,
 				6941530D2BD22A3F006C983D /* WhiteListMode.swift in Sources */,
+				698394512BDB80EC004B5C11 /* Error.swift in Sources */,
 				69A2CA482BBD33F2008994F5 /* Selection.swift in Sources */,
 				69903C5B2BB560BB00661BA2 /* TextFilter.swift in Sources */,
 				698AD6542BCA6C15002659F5 /* UserDefaultsKey.swift in Sources */,
@@ -514,7 +524,9 @@
 				69A2CA462BBC4B94008994F5 /* PopupWindowController.swift in Sources */,
 				69A2CA292BBA57B0008994F5 /* SwitchItemProvider.swift in Sources */,
 				69903C582BB131FF00661BA2 /* Clipboard.swift in Sources */,
+				6983944D2BDB556A004B5C11 /* Process+Coroutine.swift in Sources */,
 				69A2CA242BBA5578008994F5 /* SensitiveDataRegexModel.swift in Sources */,
+				6983944F2BDB73FB004B5C11 /* NSURLSession+Coroutine.swift in Sources */,
 				69A2CA2B2BBA5B1F008994F5 /* SwitchListVM.swift in Sources */,
 				698AD6432BC92FF3002659F5 /* StatusBarView.swift in Sources */,
 				69A2CA372BBAA08F008994F5 /* getselection.applescript in Sources */,
