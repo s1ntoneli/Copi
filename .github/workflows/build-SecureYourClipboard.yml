@@ -3,7 +3,7 @@ name: Build SecureYourClipboard
 on:
   push:
     branches:
-      - develop
+      - workflow-test
   workflow_dispatch:
 
 jobs:
