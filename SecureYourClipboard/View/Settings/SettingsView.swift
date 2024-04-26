@@ -14,7 +14,7 @@ import AppUpdater
 
 struct SettingsView: View {
     
-    @EnvironmentObject var appUpdater: AppUpdaterGithub
+    @EnvironmentObject var appUpdater: AppUpdater
 
     @Default(.showQuickActions) var quickActions: Bool
     @Default(.isOn) var isOn: Bool
@@ -75,7 +75,7 @@ struct SettingsView: View {
                 Text("New Version Available")
                 Spacer()
                 Button {
-                    try? appUpdater.install(downloaded)
+                    appUpdater.install()
                 } label: {
                     Text("Update Now")
                 }
