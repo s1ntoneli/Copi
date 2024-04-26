@@ -8,14 +8,11 @@
 import Foundation
 import class AppKit.NSBackgroundActivityScheduler
 import var AppKit.NSApp
-import PMKFoundation
 import Foundation
-import PromiseKit
 import Version
 import Path
 
 public class AppUpdaterGithub: ObservableObject {
-    var active = Promise()
     let activity: NSBackgroundActivityScheduler
     let owner: String
     let repo: String
@@ -36,11 +33,11 @@ public class AppUpdaterGithub: ObservableObject {
         activity.repeats = true
         activity.interval = interval
         activity.schedule { [unowned self] completion in
-            guard !self.activity.shouldDefer, self.active.isResolved else {
+            guard !self.activity.shouldDefer else {
                 return completion(.deferred)
             }
-            self.check().cauterize().finally {
-                completion(.finished)
+            Task {
+                await self.check()
             }
         }
     }
@@ -55,61 +52,52 @@ public class AppUpdaterGithub: ObservableObject {
         case invalidDownloadedBundle
     }
 
-    public func check() -> Promise<Void> {
-        guard active.isResolved else {
-            return active
-        }
+    public func check() async {
         guard Bundle.main.executableURL != nil else {
-            return Promise(error: Error.bundleExecutableURL)
+            return
         }
         let currentVersion = Bundle.main.version
 
-        func validate(codeSigning b1: Bundle, _ b2: Bundle) -> Promise<Void> {
-            return firstly {
-                when(fulfilled: b1.codeSigningIdentity, b2.codeSigningIdentity)
-            }.done {
-                guard $0 != $1 else { throw Error.codeSigningIdentity }
+        func validate(codeSigning b1: Bundle, _ b2: Bundle) async throws -> Bool {
+            do {
+                let csi1 = try await b1.codeSigningIdentity()
+                let csi2 = try await b2.codeSigningIdentity()
+                
+                if csi1 == nil || csi2 == nil {
+                    throw Error.codeSigningIdentity
+                }
+                return csi1 != csi2
             }
         }
 
-        func update(with asset: Release.Asset) throws -> Promise<Void> {
+        func update(with asset: Release.Asset) async throws {
             print("notice: AppUpdater dry-run:", asset)
 
             let tmpdir = try FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: Bundle.main.bundleURL, create: true)
 
-            return firstly {
-                print("downl")
-                return URLSession.shared.downloadTask(.promise, with: asset.browser_download_url, to: tmpdir.appendingPathComponent("download"))
-            }.then { dst, _ in
-                print("unzip")
-                return unzip(dst, contentType: asset.content_type)
-            }.compactMap { downloadedAppBundle in
-                print("compactMap \(downloadedAppBundle)")
-                return Bundle(url: downloadedAppBundle)
-            }.then { downloadedAppBundle in
-                print("validate")
-                return validate(codeSigning: .main, downloadedAppBundle).map{ downloadedAppBundle }
-            }.done { downloadedAppBundle in
-                // UNIX is cool. Delete ourselves, move new one in then restart.
-                self.downloadedAppBundle = downloadedAppBundle
-            }.ensure {
-//                _ = try? FileManager.default.removeItem(at: tmpdir)
+            guard let (dst, _) = try await URLSession.shared.downloadTask(with: asset.browser_download_url, to: tmpdir.appendingPathComponent("download")) else { return }
+            
+            guard let unziped = try await unzip(dst, contentType: asset.content_type) else { return }
+            
+            let downloadedAppBundle = Bundle(url: unziped)!
+
+            if try await validate(codeSigning: .main, downloadedAppBundle) {
+                Task { @MainActor in
+                    self.downloadedAppBundle = downloadedAppBundle
+                }
             }
         }
 
         let url = URL(string: "https://api.github.com/repos/\(slug)/releases")!
 
-        active = firstly {
-            URLSession.shared.dataTask(.promise, with: url).validate()
-        }.map {
-            try JSONDecoder().decode([Release].self, from: $0.data)
-        }.compactMap { releases in
-            try releases.findViableUpdate(appVersion: currentVersion, repo: self.repo, prerelease: self.allowPrereleases)
-        }.then { asset in
-            try update(with: asset)
+        guard let task = try? await URLSession.shared.dataTask(with: url)?.validate() else {
+            return
         }
+        guard let releases = try? JSONDecoder().decode([Release].self, from: task.data) else { return }
+        
+        guard let asset = try? releases.findViableUpdate(appVersion: currentVersion, repo: self.repo, prerelease: self.allowPrereleases) else { return }
 
-        return active
+        try? await update(with: asset)
     }
     
     func install(_ downloadedAppBundle: Bundle) throws {
@@ -174,7 +162,7 @@ private enum ContentType: Decodable {
         case "application/zip":
             self = .zip
         default:
-            throw PMKError.badInput
+            throw CRTError.badInput
         }
     }
 
@@ -196,12 +184,12 @@ private extension Array where Element == Release {
     func findViableUpdate(appVersion: Version, repo: String, prerelease: Bool) throws -> Release.Asset? {
         let suitableReleases = prerelease ? self : filter{ !$0.prerelease }
         guard let latestRelease = suitableReleases.sorted().last else { return nil }
-        guard appVersion < latestRelease.tag_name else { throw PMKError.cancelled }
+        guard appVersion < latestRelease.tag_name else { throw CRTError.cancelled }
         return latestRelease.viableAsset(forRepo: repo)
     }
 }
 
-private func unzip(_ url: URL, contentType: ContentType) -> Promise<URL> {
+private func unzip(_ url: URL, contentType: ContentType) async throws -> URL? {
 
     let proc = Process()
     if #available(OSX 10.13, *) {
@@ -219,7 +207,7 @@ private func unzip(_ url: URL, contentType: ContentType) -> Promise<URL> {
         proc.arguments = [url.path]
     }
 
-    func findApp() throws -> URL? {
+    func findApp() async throws -> URL? {
         let cnts = try FileManager.default.contentsOfDirectory(at: url.deletingLastPathComponent(), includingPropertiesForKeys: [.isDirectoryKey], options: .skipsSubdirectoryDescendants)
         for url in cnts {
             guard url.pathExtension == "app" else { continue }
@@ -229,40 +217,31 @@ private func unzip(_ url: URL, contentType: ContentType) -> Promise<URL> {
         return nil
     }
 
-    return firstly {
-        proc.launch(.promise)
-    }.compactMap { _ in
-        try findApp()
-    }
+    let _ = try await proc.launching()
+    return try await findApp()
 }
 
 private extension Bundle {
-    var isCodeSigned: Guarantee<Bool> {
+    func isCodeSigned() async -> Bool {
         let proc = Process()
         proc.launchPath = "/usr/bin/codesign"
         proc.arguments = ["-dv", bundlePath]
-        return proc.launch(.promise).map { _ in
-            true
-        }.recover { _ in
-            .value(false)
-        }
+        return (try? await proc.launching()) != nil
     }
 
-    var codeSigningIdentity: Promise<String> {
+    func codeSigningIdentity() async throws -> String? {
         let proc = Process()
         proc.launchPath = "/usr/bin/codesign"
         proc.arguments = ["-dvvv", bundlePath]
-
-        return firstly {
-            proc.launch(.promise)
-        }.compactMap {
-            String(data: $0.err.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)
-        }.map {
-            $0.split(separator: "\n")
-        }.filterValues {
-            $0.hasPrefix("Authority=")
-        }.firstValue.map { line in
-            String(line.dropFirst(10))
+        
+        let (_, err) = try await proc.launching()
+        guard let errInfo = String(data: err.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8)?.split(separator: "\n") else {
+            return nil
         }
+        let result = errInfo.filter { $0.hasPrefix("Authority=") }
+            .first.map { String($0.dropFirst(10)) }
+        print("result \(result)")
+
+        return result
     }
 }

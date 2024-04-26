@@ -28,7 +28,7 @@ struct SecureYourClipboardApp: App {
 //                    NSApp.setActivationPolicy(.accessory)
                 })
                 .task {
-                    appUpdater.check()
+                    await appUpdater.check()
                 }
         }
         .windowResizability(.contentSize)
