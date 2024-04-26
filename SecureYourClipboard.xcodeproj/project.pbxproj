@@ -48,7 +48,6 @@
 		69A2CA322BBA6522008994F5 /* SensitiveDataRegexModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA232BBA5578008994F5 /* SensitiveDataRegexModel.swift */; };
 		69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA332BBA85EE008994F5 /* AppleScriptUtilities.swift */; };
 		69A2CA372BBAA08F008994F5 /* getselection.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA362BBAA08F008994F5 /* getselection.applescript */; };
-		69A2CA3F2BBAB2B3008994F5 /* AppleScriptTest.workflow in Resources */ = {isa = PBXBuildFile; fileRef = 69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */; };
 		69A2CA412BBBE817008994F5 /* MouseEventCatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */; };
 		69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA422BBC0424008994F5 /* SystemUtilities.swift */; };
 		69A2CA462BBC4B94008994F5 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */; };
@@ -112,7 +111,6 @@
 		69A2CA332BBA85EE008994F5 /* AppleScriptUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScriptUtilities.swift; sourceTree = "<group>"; };
 		69A2CA352BBA88F7008994F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69A2CA362BBAA08F008994F5 /* getselection.applescript */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.applescript; path = getselection.applescript; sourceTree = "<group>"; };
-		69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppleScriptTest.workflow; path = ../../../../Library/Services/AppleScriptTest.workflow; sourceTree = "<group>"; };
 		69A2CA402BBBE817008994F5 /* MouseEventCatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventCatcher.swift; sourceTree = "<group>"; };
 		69A2CA422BBC0424008994F5 /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
 		69A2CA452BBC4B94008994F5 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 		69A2CA1D2BBA4C38008994F5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				69A2CA3E2BBAB2B3008994F5 /* AppleScriptTest.workflow */,
 				69A2CA202BBA4E8B008994F5 /* regex.json */,
 				69A2CA362BBAA08F008994F5 /* getselection.applescript */,
 			);
@@ -441,7 +438,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69A2CA3F2BBAB2B3008994F5 /* AppleScriptTest.workflow in Resources */,
 				69903C2F2BB131ED00661BA2 /* Preview Assets.xcassets in Resources */,
 				69A2CA212BBA4E8B008994F5 /* regex.json in Resources */,
 				69903C2C2BB131ED00661BA2 /* Assets.xcassets in Resources */,
