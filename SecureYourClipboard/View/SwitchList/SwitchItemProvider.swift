@@ -16,7 +16,7 @@ class SwitchItemProvider {
         }
         
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path))
+            let data = try Data(contentsOf: URL(fileURLWithPath: path.string))
             return try JSONDecoder().decode([SensitiveDataRegexModel].self, from: data)
         } catch {
             print(error)

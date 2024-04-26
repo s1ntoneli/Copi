@@ -8,6 +8,7 @@
 import SwiftUI
 import KeyboardShortcuts
 import Defaults
+import AppUpdater
 
 @main
 struct SecureYourClipboardApp: App {
@@ -17,22 +18,24 @@ struct SecureYourClipboardApp: App {
     
     let persistenceController = PersistenceController.shared
     @StateObject var switchListVM: SwitchListVM = SwitchListVM()
+    @StateObject var appUpdater = AppUpdaterGithub(owner: "s1ntoneli", repo: "SecureClip", interval: 60 * 60)
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             EmptyView()
                 .frame(width: 0, height: 0)
                 .onAppear(perform: {
 //                    NSApp.setActivationPolicy(.accessory)
                 })
+                .task {
+                    appUpdater.check()
+                }
         }
         .windowResizability(.contentSize)
 
         MenuBarExtra("App", systemImage: "square.stack.3d.down.forward") {
-//            StatusBarView()
             SettingsView()
+                .environmentObject(appUpdater)
         }
         .menuBarExtraStyle(.window)
         .windowResizability(.contentSize)

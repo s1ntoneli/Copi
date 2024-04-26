@@ -10,8 +10,11 @@ import KeyboardShortcuts
 import Defaults
 import Pow
 import LaunchAtLogin
+import AppUpdater
 
 struct SettingsView: View {
+    
+    @EnvironmentObject var appUpdater: AppUpdaterGithub
 
     @Default(.showQuickActions) var quickActions: Bool
     @Default(.isOn) var isOn: Bool
@@ -31,9 +34,16 @@ struct SettingsView: View {
                         secureClipboard
                     }
                     systemClipboard
-                    others
+//                    Button {
+//                        appUpdater.check()
+//                    } label: {
+//                        Text("check")
+//                    }
                 } header: {
                     header
+                    versionUpdate
+                } footer: {
+                    others
                 }
             }
             .formStyle(.grouped)
@@ -49,7 +59,7 @@ struct SettingsView: View {
     
     // MARK: - Views
     var header: some View {
-        return HStack {
+        HStack {
             Text("SecureClipX is")
             Spacer()
             Toggle(isOn ? "On" : "Off", isOn: $isOn)
@@ -57,6 +67,21 @@ struct SettingsView: View {
                 .controlSize(.regular)
         }
         .font(.headline)
+    }
+    
+    var versionUpdate: some View {
+        HStack {
+            if let downloaded = appUpdater.downloadedAppBundle {
+                Text("New Version Available")
+                Spacer()
+                Button {
+                    try? appUpdater.install(downloaded)
+                } label: {
+                    Text("Update Now")
+                }
+                .buttonStyle(BorderedProminentButtonStyle())
+            }
+        }
     }
     
     var toolbar: some View {
@@ -127,9 +152,8 @@ struct SettingsView: View {
     
     // other settings
     var others: some View {
-        Section("Others") {
-            LaunchAtLogin.Toggle()
-        }
+        LaunchAtLogin.Toggle()
+            .controlSize(.regular)
     }
     
     // MARK: - Methods

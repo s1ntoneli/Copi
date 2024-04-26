@@ -16,6 +16,8 @@
 		694153122BD94F09006C983D /* LogUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694153112BD94F09006C983D /* LogUtilities.swift */; };
 		694153142BD9545B006C983D /* NSPasteboard+New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694153132BD9545B006C983D /* NSPasteboard+New.swift */; };
 		694153172BDA7032006C983D /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 694153162BDA7032006C983D /* LaunchAtLogin */; };
+		698394482BDAAF79004B5C11 /* AppUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = 698394472BDAAF79004B5C11 /* AppUpdater */; };
+		6983944A2BDAB81B004B5C11 /* AppUpdaterGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */; };
 		698AD6432BC92FF3002659F5 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6422BC92FF3002659F5 /* StatusBarView.swift */; };
 		698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD6462BCA3FE3002659F5 /* SettingsView.swift */; };
 		698AD64C2BCA411E002659F5 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698AD64B2BCA411E002659F5 /* KeyboardShortcuts.swift */; };
@@ -79,6 +81,7 @@
 		694153102BD28729006C983D /* AXSwiftExt */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AXSwiftExt; path = ../AXSwiftExt; sourceTree = "<group>"; };
 		694153112BD94F09006C983D /* LogUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtilities.swift; sourceTree = "<group>"; };
 		694153132BD9545B006C983D /* NSPasteboard+New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPasteboard+New.swift"; sourceTree = "<group>"; };
+		698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdaterGithub.swift; sourceTree = "<group>"; };
 		698AD6422BC92FF3002659F5 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
 		698AD6442BCA2C48002659F5 /* SecureClipX-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecureClipX-Bridging-Header.h"; sourceTree = "<group>"; };
 		698AD6462BCA3FE3002659F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -127,6 +130,7 @@
 				694153092BD22417006C983D /* AXSwiftExt in Frameworks */,
 				698AD6522BCA6BF2002659F5 /* Defaults in Frameworks */,
 				694153172BDA7032006C983D /* LaunchAtLogin in Frameworks */,
+				698394482BDAAF79004B5C11 /* AppUpdater in Frameworks */,
 				690CE4802BD2118500A16200 /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +261,7 @@
 				69A2CA422BBC0424008994F5 /* SystemUtilities.swift */,
 				694153112BD94F09006C983D /* LogUtilities.swift */,
 				694153132BD9545B006C983D /* NSPasteboard+New.swift */,
+				698394492BDAB81B004B5C11 /* AppUpdaterGithub.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				69903C202BB131EB00661BA2 /* Sources */,
 				69903C212BB131EB00661BA2 /* Frameworks */,
 				69903C222BB131EB00661BA2 /* Resources */,
+				6983944B2BDB379E004B5C11 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -340,6 +346,7 @@
 				690CE47F2BD2118500A16200 /* KeyboardShortcuts */,
 				694153082BD22417006C983D /* AXSwiftExt */,
 				694153162BDA7032006C983D /* LaunchAtLogin */,
+				698394472BDAAF79004B5C11 /* AppUpdater */,
 			);
 			productName = SecureYourClipboard;
 			productReference = 69903C242BB131EB00661BA2 /* SecureYourClipboard.app */;
@@ -419,6 +426,7 @@
 				690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 				694153072BD22417006C983D /* XCRemoteSwiftPackageReference "AXSwiftExt" */,
 				694153152BDA7031006C983D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				698394462BDAAF79004B5C11 /* XCRemoteSwiftPackageReference "AppUpdater" */,
 			);
 			productRefGroup = 69903C252BB131EB00661BA2 /* Products */;
 			projectDirPath = "";
@@ -460,6 +468,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6983944B2BDB379E004B5C11 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		69903C202BB131EB00661BA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -471,6 +500,7 @@
 				69A2CA432BBC0424008994F5 /* SystemUtilities.swift in Sources */,
 				69A2CA2D2BBA5CD5008994F5 /* SwitchListView.swift in Sources */,
 				69903C342BB131ED00661BA2 /* SecureYourClipboard.xcdatamodeld in Sources */,
+				6983944A2BDAB81B004B5C11 /* AppUpdaterGithub.swift in Sources */,
 				69A2CA342BBA85EE008994F5 /* AppleScriptUtilities.swift in Sources */,
 				694153122BD94F09006C983D /* LogUtilities.swift in Sources */,
 				698AD6472BCA3FE3002659F5 /* SettingsView.swift in Sources */,
@@ -587,7 +617,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to the clipboard to perform certain actions.";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -645,7 +675,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "We need access to the clipboard to perform certain actions.";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -661,13 +691,15 @@
 				CODE_SIGN_ENTITLEMENTS = SecureYourClipboard/SecureYourClipboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 000100;
 				DEVELOPMENT_ASSET_PATHS = "\"SecureYourClipboard/Preview Content\"";
 				DEVELOPMENT_TEAM = JDZMWLF652;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecureYourClipboard/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "I need it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -675,7 +707,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gokoding.SecureYourClipboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -692,13 +724,15 @@
 				CODE_SIGN_ENTITLEMENTS = SecureYourClipboard/SecureYourClipboard.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 000100;
 				DEVELOPMENT_ASSET_PATHS = "\"SecureYourClipboard/Preview Content\"";
 				DEVELOPMENT_TEAM = JDZMWLF652;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SecureYourClipboard/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSAppleEventsUsageDescription = "I need it";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -706,7 +740,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gokoding.SecureYourClipboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -861,6 +895,14 @@
 				version = 5.0.1;
 			};
 		};
+		698394462BDAAF79004B5C11 /* XCRemoteSwiftPackageReference "AppUpdater" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/AppUpdater.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		698AD6502BCA6BF2002659F5 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
@@ -891,6 +933,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 694153152BDA7031006C983D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
+		};
+		698394472BDAAF79004B5C11 /* AppUpdater */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 698394462BDAAF79004B5C11 /* XCRemoteSwiftPackageReference "AppUpdater" */;
+			productName = AppUpdater;
 		};
 		698AD6512BCA6BF2002659F5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

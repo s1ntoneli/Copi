@@ -64,7 +64,7 @@ func callAppleScript3() {
     let task = Process()
     task.launchPath = "/usr/bin/osascript"
     
-    task.arguments = [path]
+    task.arguments = [path.string]
      
     try? task.run()
 }
@@ -75,7 +75,7 @@ func runWorkflow() {
             return
         }
 
-        let workflowURL = URL(fileURLWithPath: workflowPath)
+    let workflowURL = URL(fileURLWithPath: workflowPath.string)
         do {
             try AMWorkflow.run(at:workflowURL, withInput: "selection")
         } catch {
