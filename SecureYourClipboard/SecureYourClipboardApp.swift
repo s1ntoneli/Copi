@@ -26,6 +26,7 @@ struct SecureYourClipboardApp: App {
                 .frame(width: 0, height: 0)
                 .onAppear(perform: {
 //                    NSApp.setActivationPolicy(.accessory)
+                    NSApp.setActivationPolicy(.prohibited)
                 })
                 .task {
                     appUpdater.check()

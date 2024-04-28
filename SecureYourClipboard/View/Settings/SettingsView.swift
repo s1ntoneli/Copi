@@ -8,7 +8,6 @@
 import SwiftUI
 import KeyboardShortcuts
 import Defaults
-import Pow
 import LaunchAtLogin
 import AppUpdater
 

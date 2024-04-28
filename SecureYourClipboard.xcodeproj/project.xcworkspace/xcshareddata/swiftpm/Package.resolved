@@ -46,15 +46,6 @@
       }
     },
     {
-      "identity" : "pow",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EmergeTools/Pow",
-      "state" : {
-        "revision" : "cc014eba4b65f689cadc281ad925de5607f2adc9",
-        "version" : "1.0.3"
-      }
-    },
-    {
       "identity" : "version",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mxcl/Version.git",

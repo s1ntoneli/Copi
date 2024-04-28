@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		690CE47D2BD2039A00A16200 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 690CE47C2BD2039A00A16200 /* Pow */; };
 		690CE4802BD2118500A16200 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 690CE47F2BD2118500A16200 /* KeyboardShortcuts */; };
 		694153092BD22417006C983D /* AXSwiftExt in Frameworks */ = {isa = PBXBuildFile; productRef = 694153082BD22417006C983D /* AXSwiftExt */; };
 		6941530B2BD229B9006C983D /* GlobalMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6941530A2BD229B9006C983D /* GlobalMode.swift */; };
@@ -122,7 +121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				690CE47D2BD2039A00A16200 /* Pow in Frameworks */,
 				694153092BD22417006C983D /* AXSwiftExt in Frameworks */,
 				698AD6522BCA6BF2002659F5 /* Defaults in Frameworks */,
 				694153172BDA7032006C983D /* LaunchAtLogin in Frameworks */,
@@ -336,7 +334,6 @@
 			name = SecureYourClipboard;
 			packageProductDependencies = (
 				698AD6512BCA6BF2002659F5 /* Defaults */,
-				690CE47C2BD2039A00A16200 /* Pow */,
 				690CE47F2BD2118500A16200 /* KeyboardShortcuts */,
 				694153082BD22417006C983D /* AXSwiftExt */,
 				694153162BDA7032006C983D /* LaunchAtLogin */,
@@ -416,7 +413,6 @@
 			mainGroup = 69903C1B2BB131EA00661BA2;
 			packageReferences = (
 				698AD6502BCA6BF2002659F5 /* XCRemoteSwiftPackageReference "Defaults" */,
-				690CE47B2BD2039A00A16200 /* XCRemoteSwiftPackageReference "Pow" */,
 				690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 				694153072BD22417006C983D /* XCRemoteSwiftPackageReference "AXSwiftExt" */,
 				694153152BDA7031006C983D /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
@@ -855,14 +851,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		690CE47B2BD2039A00A16200 /* XCRemoteSwiftPackageReference "Pow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/EmergeTools/Pow";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
 		690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/s1ntoneli/KeyboardShortcuts";
@@ -906,11 +894,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		690CE47C2BD2039A00A16200 /* Pow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 690CE47B2BD2039A00A16200 /* XCRemoteSwiftPackageReference "Pow" */;
-			productName = Pow;
-		};
 		690CE47F2BD2118500A16200 /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 690CE47E2BD2118500A16200 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;

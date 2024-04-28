@@ -22,10 +22,6 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>NSReturnTypes</key>
-			<array>
-				<string>NSStringPboardType</string>
-			</array>
 			<key>NSSendTypes</key>
 			<array>
 				<string>public.text</string>

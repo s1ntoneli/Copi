@@ -73,9 +73,6 @@ class ManualMode {
         // Use `content`…
         NSPasteboard.safeCopy.setString(content)
         print("copyText content:", content)
-        // need to set the return data, otherwise the focus will leave the foreground app after the service call is completed
-        pasteboard.clearContents()
-        pasteboard.setString("", forType: .fromSecureClipX)
     }
 
     @objc func pasteText(_ pasteboard: NSPasteboard, userData: String?, error: NSErrorPointer) {
