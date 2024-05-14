@@ -10,6 +10,7 @@ import KeyboardShortcuts
 import Defaults
 import LaunchAtLogin
 import AppUpdater
+import AXSwift
 
 struct SettingsView: View {
     
@@ -19,6 +20,9 @@ struct SettingsView: View {
     @Default(.isOn) var isOn: Bool
     @Default(.overrideShortcuts) var globalMode: Bool
     
+    @Default(.isServicesPermitted) var isServicesPermitted: Bool
+    @State private var isAccessibilityPermitted = false
+
     @State private var systemClipboardContent: NSPasteboardItem? = nil
     @State private var systemClipboardTypeSelection: String = ""
     @State private var secureClipboardContent: String? = nil
@@ -26,23 +30,22 @@ struct SettingsView: View {
     var body: some View {
         ScrollView {
             Form {
-                Section {
-                    if isOn {
-                        toolbar
-                        shortcuts
-                        secureClipboard
+                if !isAccessibilityPermitted || !isServicesPermitted {
+                    permissions
+                } else {
+                    Section {
+                        if isOn {
+                            toolbar
+                            shortcuts
+                            secureClipboard
+                        }
+                        systemClipboard
+                    } header: {
+                        header
+                        versionUpdate
+                    } footer: {
+                        others
                     }
-                    systemClipboard
-//                    Button {
-//                        appUpdater.check()
-//                    } label: {
-//                        Text("check")
-//                    }
-                } header: {
-                    header
-                    versionUpdate
-                } footer: {
-                    others
                 }
             }
             .formStyle(.grouped)
@@ -87,6 +90,83 @@ struct SettingsView: View {
         Section("Action Bar") {
             Toggle("Show Action Bar on Selection", isOn: $quickActions)
                 .disabled(!isOn)
+        }
+    }
+    
+    var permissions: some View {
+        Section("Permission Granted Needed") {
+            if !isAccessibilityPermitted {
+                Section {
+                    Label("Use accessibility permission to get the selection text", systemImage: "checkmark.circle.fill")
+                    HStack {
+                        Button {
+                            AXSwift.checkIsProcessTrusted(prompt: true)
+                        } label: {
+                            Text("Open Accessibility Settings")
+                        }
+                        .controlSize(.regular)
+                        
+                        Button {
+                            isAccessibilityPermitted = AXSwift.checkIsProcessTrusted()
+                        } label: {
+                            Text("Validate")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        .controlSize(.large)
+                        .buttonStyle(.plain)
+                    }
+                    .frame(maxWidth: .infinity)
+                } header: {
+                    HStack {
+                        Text("1/2: Accessibility")
+//                        Spacer()
+//                        Button {
+//                            checkIsProcessTrusted(prompt: true)
+//                        } label: {
+//                            Text("Open Settings")
+//                                .fontWeight(.regular)
+//                        }
+                    }
+                }
+            } else if !isServicesPermitted {
+                Section {
+                    VStack(alignment: .leading) {
+                        Label("Safe Copy", systemImage: "checkmark.circle.fill")
+                        Label("Safe Paste", systemImage: "checkmark.circle.fill")
+                        Label("Process Selected Text", systemImage: "checkmark.circle.fill")
+                    }
+                    HStack {
+                        Button {
+                            if let url = URL(string: "x-apple.systempreferences:com.apple.preference.keyboard?Text") {
+                                NSWorkspace.shared.open(url)
+                            }
+                        } label: {
+                            Text("Open Keyboards Settings")
+                        }
+                        .controlSize(.regular)
+                        
+                        Button {
+                            isServicesPermitted = true
+                        } label: {
+                            Text("Done")
+                                .foregroundStyle(Color.accentColor)
+                        }
+                        .controlSize(.large)
+                        .buttonStyle(.plain)
+                    }
+                    .frame(maxWidth: .infinity)
+                } header: {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("2/2: Services")
+                        }
+                        Text("Open Settings -> Keyboard Shortcuts -> Services -> Text -> Enabled 'Safe Copy' 'Safe Paste' 'Process Selected Text'")
+                            .font(.subheadline)
+                        //                    Text("We use System Services to ensure the security of Copy. You need to ensure the following services are enabled:")
+                        //                        .font(.subheadline)
+                    }
+                }
+            }
         }
     }
     
@@ -157,6 +237,7 @@ struct SettingsView: View {
     
     // MARK: - Methods
     func onStart() {
+        isAccessibilityPermitted = AXSwift.checkIsProcessTrusted()
         updateSystemPasteboardItem(NSPasteboard.general.pasteboardItems ?? [])
         updateSecurePasteboard()
         

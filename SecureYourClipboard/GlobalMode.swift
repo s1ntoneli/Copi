@@ -13,18 +13,33 @@ import AXSwiftExt
 
 class GlobalMode {
     static let shared = GlobalMode()
+    
+    private var eventTap: CFMachPort? = nil
+    private var observation: Any? = nil
 
     func initialize() {
-        // 监听复制
+        // listen new copy
         NSPasteboard.general.onNewCopy { newItem in
             print("on new copy", NSPasteboard.general.pasteboardItems?.count)
             if NSPasteboard.general.pasteboardItems?.isEmpty != true {
                 NSPasteboard.safeCopy.setString(nil)
             }
         }
-        
+        overrideCopyPaste()
+        observation = Defaults.observe(.overrideShortcuts) { obj in
+            print("Value:", obj.newValue)
+            if obj.newValue {
+                self.overrideCopyPaste()
+            } else {
+                self.unoverrideCopyPaste()
+            }
+        }
+    }
+    
+    func overrideCopyPaste() {
+        unoverrideCopyPaste()
         // 监听粘贴
-        listenAndInterceptKeyEvent(events: [.keyDown]) { proxy, type, event, _ in
+        eventTap = listenAndInterceptKeyEvent(events: [.keyDown]) { proxy, type, event, _ in
             guard Defaults[.overrideShortcuts] else {
                 return Unmanaged.passRetained(event)
             }
@@ -54,6 +69,13 @@ class GlobalMode {
             // 处理事件的回调函数
             return Unmanaged.passRetained(event)
         }
+    }
+    
+    func unoverrideCopyPaste() {
+        if let eventTap {
+            unlistenKeyEvent(eventTap)
+        }
+        eventTap = nil
     }
 }
 

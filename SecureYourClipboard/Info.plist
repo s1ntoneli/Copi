@@ -42,7 +42,7 @@
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>processSelectedText</string>
+				<string>Process Selected Text</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>processSelectedText</string>

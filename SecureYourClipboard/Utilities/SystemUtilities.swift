@@ -213,17 +213,22 @@ func pollTask(every interval: TimeInterval, timeout: TimeInterval = 2, task: @es
     RunLoop.current.run()
 }
     
-func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBack) {
+func unlistenKeyEvent(_ eventTap: CFMachPort) {
+    CGEvent.tapEnable(tap: eventTap, enable: false)
+    CFRunLoopStop(CFRunLoopGetCurrent())
+}
+
+func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBack) -> CFMachPort? {
     let eventMask = events.reduce(into: 0) { partialResult, eventType in
         partialResult = partialResult | 1 << eventType.rawValue
     }
-
+    
     // 创建一个事件监听器，并指定位置为cghidEventTap
     let eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap,
-                                      place: .headInsertEventTap,
-                                      options: .defaultTap,
-                                      eventsOfInterest: CGEventMask(eventMask),
-                                      callback: handler, userInfo: nil)
+                                     place: .headInsertEventTap,
+                                     options: .defaultTap,
+                                     eventsOfInterest: CGEventMask(eventMask),
+                                     callback: handler, userInfo: nil)
     // 启用事件监听器
     if let eventTap {
         let runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0)
@@ -231,6 +236,7 @@ func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBa
         CGEvent.tapEnable(tap: eventTap, enable: true)
         CFRunLoopRun()
     }
+    return eventTap
 }
 
 extension NSPasteboard.PasteboardType {
@@ -269,7 +275,7 @@ func pasteByService() {
 }
 
 func canPerformSelectedText() -> UIElement? {
-    if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "processSelectedText") {
+    if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Process Selected Text") {
         return copy
     }
     return nil

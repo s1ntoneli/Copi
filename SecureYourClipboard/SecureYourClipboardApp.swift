@@ -9,6 +9,7 @@ import SwiftUI
 import KeyboardShortcuts
 import Defaults
 import AppUpdater
+import AXSwift
 
 @main
 struct SecureYourClipboardApp: App {
@@ -37,6 +38,14 @@ struct SecureYourClipboardApp: App {
         MenuBarExtra("App", systemImage: "square.stack.3d.down.forward") {
             SettingsView()
                 .environmentObject(appUpdater)
+                .onAppear {
+                    NotificationCenter.default.addObserver(
+                                forName: NSWindow.didChangeOcclusionStateNotification, object: nil, queue: nil)
+                    { notification in
+                        print("Visible: \((notification.object as! NSWindow).isVisible)", (notification.object as! NSWindow))
+                        
+                    }
+                }
         }
         .menuBarExtraStyle(.window)
         .windowResizability(.contentSize)
