@@ -9,6 +9,7 @@ import Foundation
 import KeyboardShortcuts
 import AppKit
 import Defaults
+import AXSwift
 
 class ManualMode {
     static let shared = ManualMode()
@@ -31,7 +32,7 @@ class ManualMode {
         }
         
         MouseEventCatcher.shared.onSelectEventHooks { event in
-            guard Defaults[.isOn], Defaults[.showQuickActions] else {
+            guard AXSwift.checkIsProcessTrusted(), Defaults[.isOn], Defaults[.showQuickActions] else {
                 return
             }
 

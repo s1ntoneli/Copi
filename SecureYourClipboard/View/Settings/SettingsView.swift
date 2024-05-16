@@ -37,8 +37,8 @@ struct SettingsView: View {
                         if isOn {
                             toolbar
                             shortcuts
-                            secureClipboard
                         }
+                        secureClipboard
                         systemClipboard
                     } header: {
                         header

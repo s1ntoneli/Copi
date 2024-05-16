@@ -256,6 +256,9 @@ func measureTime(block: () -> Void) {
 
 func copyByService() {
     print("copyByService")
+    guard AXSwift.checkIsProcessTrusted() else {
+        return
+    }
 //    Task {
         if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Safe Copy") {
             print("found copy")
@@ -266,6 +269,9 @@ func copyByService() {
 
 func pasteByService() {
     print("pasteByService")
+    guard AXSwift.checkIsProcessTrusted() else {
+        return
+    }
     Task {
         if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let paste = app.findMenuItem(title: "Safe Paste") {
             print("found paste")
@@ -275,6 +281,9 @@ func pasteByService() {
 }
 
 func canPerformSelectedText() -> UIElement? {
+    guard AXSwift.checkIsProcessTrusted() else {
+        return nil
+    }
     if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Process Selected Text") {
         return copy
     }
@@ -282,6 +291,9 @@ func canPerformSelectedText() -> UIElement? {
 }
 
 func canPerformCopy() -> UIElement? {
+    guard AXSwift.checkIsProcessTrusted() else {
+        return nil
+    }
     if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let copy = app.findMenuItem(title: "Safe Copy") {
         return copy
     }
@@ -289,6 +301,10 @@ func canPerformCopy() -> UIElement? {
 }
 
 func canPerformPaste() -> UIElement? {
+    guard AXSwift.checkIsProcessTrusted() else {
+        return nil
+    }
+    
     if let frontmost = NSWorkspace.shared.frontmostApplication, let app = Application(frontmost), let paste = app.findMenuItem(title: "Safe Paste") {
         return paste
     }

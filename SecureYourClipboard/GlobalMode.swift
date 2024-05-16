@@ -20,17 +20,21 @@ class GlobalMode {
     func initialize() {
         // listen new copy
         NSPasteboard.general.onNewCopy { newItem in
+            guard Defaults[.isOn] else {
+                return
+            }
             print("on new copy", NSPasteboard.general.pasteboardItems?.count)
             if NSPasteboard.general.pasteboardItems?.isEmpty != true {
                 NSPasteboard.safeCopy.setString(nil)
             }
         }
         overrideCopyPaste()
-        observation = Defaults.observe(.overrideShortcuts) { obj in
-            print("Value:", obj.newValue)
-            if obj.newValue {
+        observation = Defaults.observe(keys: .isOn, .overrideShortcuts) {
+            if Defaults[.isOn], Defaults[.overrideShortcuts] {
+                print("overrides")
                 self.overrideCopyPaste()
             } else {
+                print("do not overrides")
                 self.unoverrideCopyPaste()
             }
         }
@@ -40,7 +44,7 @@ class GlobalMode {
         unoverrideCopyPaste()
         // 监听粘贴
         eventTap = listenAndInterceptKeyEvent(events: [.keyDown]) { proxy, type, event, _ in
-            guard Defaults[.overrideShortcuts] else {
+            guard Defaults[.isOn], Defaults[.overrideShortcuts] else {
                 return Unmanaged.passRetained(event)
             }
             
