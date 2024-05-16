@@ -25,7 +25,7 @@ struct SettingsView: View {
 
     @State private var systemClipboardContent: NSPasteboardItem? = nil
     @State private var systemClipboardTypeSelection: String = ""
-    @State private var secureClipboardContent: String? = nil
+    @State private var copiClipboardContent: String? = nil
     
     var body: some View {
         ScrollView {
@@ -62,7 +62,7 @@ struct SettingsView: View {
     // MARK: - Views
     var header: some View {
         HStack {
-            Text("SecureClipX is")
+            Text("Copi is")
             Spacer()
             Toggle(isOn ? "On" : "Off", isOn: $isOn)
                 .toggleStyle(.button)
@@ -183,8 +183,8 @@ struct SettingsView: View {
     }
     
     var secureClipboard: some View {
-        Section("Secure Clipboard (Safe)") {
-            Text(secureClipboardContent ?? "nil")
+        Section("Copi Clipboard (Safe)") {
+            Text(copiClipboardContent ?? "Empty")
         }
     }
     
@@ -255,7 +255,7 @@ struct SettingsView: View {
     }
     
     func updateSecurePasteboard() {
-        secureClipboardContent = NSPasteboard.safeCopy.string()
+        copiClipboardContent = NSPasteboard.safeCopy.string()
     }
 }
 

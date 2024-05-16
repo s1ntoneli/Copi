@@ -4,15 +4,5 @@
 <dict>
 	<key>com.apple.security.app-sandbox</key>
 	<false/>
-	<key>com.apple.security.files.user-selected.read-only</key>
-	<true/>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.apple.finder</string>
-		<string>com.apple.systemevents</string>
-		<string>com.gokoding.Copi</string>
-		<string>MACS</string>
-		<string>com.apple.applescript</string>
-	</array>
 </dict>
 </plist>

@@ -18,7 +18,7 @@ struct CopiApp: App {
     var appDelegate
     
     @StateObject var switchListVM: SwitchListVM = SwitchListVM()
-    @StateObject var appUpdater = AppUpdater(owner: "s1ntoneli", repo: "SecureClip", interval: 60 * 60)
+    @StateObject var appUpdater = AppUpdater(owner: "s1ntoneli", repo: "Copi", interval: 60 * 60)
 
     var body: some Scene {
         WindowGroup {
