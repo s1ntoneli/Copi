@@ -148,7 +148,7 @@ extension [NSPasteboardItem]? {
             copyValue.append(newItem)
         }
         let fromSCX = NSPasteboardItem()
-        fromSCX.setData(Data(), forType: .fromSecureClipX)
+        fromSCX.setData(Data(), forType: .fromCopi)
         copyValue.append(fromSCX)
         
         return copyValue
@@ -240,7 +240,7 @@ func listenAndInterceptKeyEvent(events: [CGEventType], handler: CGEventTapCallBa
 }
 
 extension NSPasteboard.PasteboardType {
-    static var fromSecureClipX: NSPasteboard.PasteboardType = .init("com.gokoding.SecureYourClipboard")
+    static var fromCopi: NSPasteboard.PasteboardType = .init("com.gokoding.Copi")
 }
 
 func measureTime(block: () -> Void) {

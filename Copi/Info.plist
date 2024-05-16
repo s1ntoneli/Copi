@@ -68,11 +68,11 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>copy from SecureClipX</string>
+			<string>copy from Copi</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
-			<string>com.gokoding.SecureYourClipboard</string>
+			<string>com.gokoding.Copi</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>

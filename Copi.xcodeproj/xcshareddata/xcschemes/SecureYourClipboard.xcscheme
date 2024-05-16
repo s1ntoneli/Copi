@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69903C232BB131EB00661BA2"
-               BuildableName = "SecureYourClipboard.app"
-               BlueprintName = "SecureYourClipboard"
-               ReferencedContainer = "container:SecureYourClipboard.xcodeproj">
+               BuildableName = "Copi.app"
+               BlueprintName = "Copi"
+               ReferencedContainer = "container:Copi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,9 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69903C392BB131ED00661BA2"
-               BuildableName = "SecureYourClipboardTests.xctest"
-               BlueprintName = "SecureYourClipboardTests"
-               ReferencedContainer = "container:SecureYourClipboard.xcodeproj">
+               BuildableName = "CopiTests.xctest"
+               BlueprintName = "CopiTests"
+               ReferencedContainer = "container:Copi.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "69903C432BB131ED00661BA2"
-               BuildableName = "SecureYourClipboardUITests.xctest"
-               BlueprintName = "SecureYourClipboardUITests"
-               ReferencedContainer = "container:SecureYourClipboard.xcodeproj">
+               BuildableName = "CopiUITests.xctest"
+               BlueprintName = "CopiUITests"
+               ReferencedContainer = "container:Copi.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69903C232BB131EB00661BA2"
-            BuildableName = "SecureYourClipboard.app"
-            BlueprintName = "SecureYourClipboard"
-            ReferencedContainer = "container:SecureYourClipboard.xcodeproj">
+            BuildableName = "Copi.app"
+            BlueprintName = "Copi"
+            ReferencedContainer = "container:Copi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -86,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "69903C232BB131EB00661BA2"
-            BuildableName = "SecureYourClipboard.app"
-            BlueprintName = "SecureYourClipboard"
-            ReferencedContainer = "container:SecureYourClipboard.xcodeproj">
+            BuildableName = "Copi.app"
+            BlueprintName = "Copi"
+            ReferencedContainer = "container:Copi.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

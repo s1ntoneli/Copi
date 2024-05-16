@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class SecureYourClipboardUITestsLaunchTests: XCTestCase {
+final class CopiUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

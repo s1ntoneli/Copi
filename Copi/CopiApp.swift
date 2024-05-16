@@ -12,12 +12,11 @@ import AppUpdater
 import AXSwift
 
 @main
-struct SecureYourClipboardApp: App {
+struct CopiApp: App {
     
     @NSApplicationDelegateAdaptor(AppDelegate.self)
     var appDelegate
     
-    let persistenceController = PersistenceController.shared
     @StateObject var switchListVM: SwitchListVM = SwitchListVM()
     @StateObject var appUpdater = AppUpdater(owner: "s1ntoneli", repo: "SecureClip", interval: 60 * 60)
 

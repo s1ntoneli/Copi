@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import SecureYourClipboard
+@testable import Copi
 
-final class SecureYourClipboardTests: XCTestCase {
+final class CopiTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

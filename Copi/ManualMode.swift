@@ -65,7 +65,7 @@ class ManualMode {
         print("processSelectedText content:", content)
         
         pasteboard.clearContents()
-        pasteboard.setString("", forType: .fromSecureClipX)
+        pasteboard.setString("", forType: .fromCopi)
     }
 
     @objc func copyText(_ pasteboard: NSPasteboard, userData: String?, error: NSErrorPointer) {
