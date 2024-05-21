@@ -4,7 +4,7 @@
 # Copi
 **A Secure Clipboard Alternative for macOS**
 
-**English** · [Simplified Chinese](./README.md)
+**English** · [简体中文](./README.zh-CN.md)
 
 <!-- SHIELD GROUP -->
 [![](https://img.shields.io/badge/SwiftUI-brightgreen)]() [![](https://img.shields.io/badge/macOS-blue)]() [![](https://img.shields.io/badge/☕️Sponser%20Me-yellow)](https://macaify.lemonsqueezy.com/buy/188835a0-ca78-444d-b1ca-399218cb1b6a?logo=0&discount=0)
