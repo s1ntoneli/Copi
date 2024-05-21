@@ -63,6 +63,7 @@
     - [ ] 密码管理器来源
 
 ## 下载
+https://github.com/s1ntoneli/Copi/releases
 
 ## 截图
 <img src="Stuff/screenshot.png" alt="" width=400/>
