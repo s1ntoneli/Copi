@@ -32,15 +32,17 @@
 ### 1. 快捷操作栏模式
 开启 Action Bar 显示后，选中文字时，文字上方会显示用于安全复制、粘贴的快捷按钮。鼠标点击即可使用 Copi 剪贴板进行文字操作。长按文字输入框可以显示粘贴选项。
 
-<img src="Stuff/actionbar2.png" alt="文字的快速操作按钮" width=400 height=400/>
+<img src="Stuff/actionbar2.png" alt="文字的快速操作按钮" width=400/>
 
 ### 2. 快捷键模式
 可以设定单独的快捷键进行安全复制、安全粘贴。
-<img src="Stuff/shortcuts.png" alt="可以设定单独的快捷键进行安全复制、安全粘贴" width=400 height=400/>
+
+<img src="Stuff/shortcuts.png" alt="可以设定单独的快捷键进行安全复制、安全粘贴" width=400/>
 
 ### 3. 覆盖系统复制粘贴快捷键
 覆盖后所有对文字的复制粘贴自动从 Copi 的安全渠道进行复制、粘贴。
-<img src="Stuff/override-shortcuts.png" alt="覆盖后所有对文字的复制粘贴自动从 Copi 的安全渠道进行复制、粘贴" width=400 height=400/>
+
+<img src="Stuff/override-shortcuts.png" alt="覆盖后所有对文字的复制粘贴自动从 Copi 的安全渠道进行复制、粘贴" width=400/>
 
 ## 为何相信你？
 开源。
@@ -63,7 +65,7 @@
 ## 下载
 
 ## 截图
-<img src="Stuff/screenshot.png" alt="" width=400 height=400/>
+<img src="Stuff/screenshot.png" alt="" width=400/>
 
 
 ## 分享给更多人 🔥
