@@ -98,6 +98,11 @@ https://github.com/s1ntoneli/Copi/releases
 
 [MIT](./LICENSE)
 
+## My Apps
+* [CleanClip](https://cleanclip.cc): 可能是 macOS 上最干净的剪贴板管理工具!
+* [Macaify](https://macaify.com): 在任意 App 中使用 ChatGPT
+* [Copi](https://copi.cleanclip.cc): macOS 系统剪贴板的安全替代品
+
 [share-x-link]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fcopi.cleanclip.cc&text=Copi%20-%20An%20open%20source%20secure%20alternatives%20to%20the%20macOS%20system%20clipboard.%20Protect%20your%20data%20a%20step%20ahead%2C%20no%20more%20worries%20about%20clipboard%20data%20leakage
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white
 [share-facebook-link]: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcopi.cleanclip.cc%20Protect%20your%20data%20a%20step%20ahead%2C%20no%20more%20worries%20about%20clipboard%20data%20leakage.
