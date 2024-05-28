@@ -2,7 +2,7 @@
     <img src="Stuff/AppIcon-readme.png" width="200" height="200">
 
 # Copi
-**A Secure Clipboard Alternative for macOS**
+**A Secure Alternative to the Mac System Clipboard**
 
 **English** · [简体中文](./README.zh-CN.md)
 
@@ -96,6 +96,10 @@ Please make sure to update tests as appropriate.
 
 [MIT](./LICENSE)
 
+## My Apps
+* [CleanClip](https://cleanclip.cc): The cleanest clipboard manager on macOS.
+* [Macaify](https://macaify.com): Fast use of ChatGPT on macOS.
+* [Copi](https://copi.cleanclip.cc): A secure alternative to the Mac system clipboard.
 
 [share-x-link]: https://twitter.com/intent/tweet?url=https%3A%2F%2Fcopi.cleanclip.cc&text=Copi%20-%20An%20open%20source%20secure%20alternatives%20to%20the%20macOS%20system%20clipboard.%20Protect%20your%20data%20a%20step%20ahead%2C%20no%20more%20worries%20about%20clipboard%20data%20leakage
 [share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white
