@@ -52,7 +52,7 @@ Use the system's custom "service" feature to get and paste text, instead of goin
 <img src="Stuff/safecopy.png" alt="How is data security ensured?" width=800/>
 
 ## Roadmap
-- [x] Stealth Copy
+- [x] Traceless copying
 - [x] Action Bar
 - [x] Dedicated Copy Shortcut
 - [x] Override System Copy and Paste Shortcuts
