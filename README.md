@@ -49,7 +49,7 @@ Open source.
 
 Use the system's custom "service" feature to get and paste text, instead of going through the system clipboard. Therefore, various attacks targeting the "system clipboard" using traditional methods will all fail.
 
-<img src="/images/safecopy.png" alt="How is data security ensured?" width=800/>
+<img src="Stuff/safecopy.png" alt="How is data security ensured?" width=800/>
 
 ## Roadmap
 - [x] Stealth Copy

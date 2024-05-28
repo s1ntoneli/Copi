@@ -51,7 +51,7 @@
 
 使用系统的自定义“服务”功能来获取和粘贴文字，而不再通过系统剪贴板。因此使用传统方法对“系统剪贴板”进行的各类攻击行为会全部失效。
 
-<img src="/images/safecopy.png" alt="如何确保数据安全" width=800/>
+<img src="Stuff/safecopy.png" alt="如何确保数据安全" width=800/>
 
 ## 计划
 - [x] 无痕复制
