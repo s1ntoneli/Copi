@@ -70,6 +70,9 @@ https://github.com/s1ntoneli/Copi/releases
 ## 截图
 <img src="Stuff/screenshot.png" alt="" width=400/>
 
+## Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=s1ntoneli/Copi&type=Date)](https://star-history.com/#s1ntoneli/Copi&Date)
 
 ## 分享给更多人 🔥
 
@@ -123,5 +126,3 @@ https://github.com/s1ntoneli/Copi/releases
 
 [share-whatsapp-link]: https://api.whatsapp.com/send?text=https://copi.cleanclip.cc
 [share-whatsapp-shield]: https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&logo=whatsapp&logoColor=white
-
-
