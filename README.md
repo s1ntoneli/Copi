@@ -13,6 +13,10 @@
 
 [Copi](https://copi.cleanclip.cc) is an open-source, lightweight, and secure clipboard alternative for macOS. It offers the same copy and paste functionality as the system clipboard, but its contents cannot be accessed by any third-party applications, effectively protecting your privacy data.
 
+## Download
+https://github.com/s1ntoneli/Copi/releases
+
+
 ## Why Copi?
 
 1. Defend against clipboard hijacking attacks
@@ -61,9 +65,8 @@ Use the system's custom "service" feature to get and paste text, instead of goin
     - [ ] User-defined Regex
     - [ ] User-defined Fixed String
     - [ ] From Password Manager
-
-## Download
-https://github.com/s1ntoneli/Copi/releases
+- [ ] History
+- [ ] Cut (Command+X)
 
 ## Screenshots
 <img src="Stuff/screenshot.png" alt="" width=400/>
