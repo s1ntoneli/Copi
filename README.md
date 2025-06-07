@@ -130,3 +130,6 @@ Please make sure to update tests as appropriate.
 
 [share-whatsapp-link]: https://api.whatsapp.com/send?text=https://copi.cleanclip.cc
 [share-whatsapp-shield]: https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&logo=whatsapp&logoColor=white
+
+
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
